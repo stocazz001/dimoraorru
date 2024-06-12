@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Welcome to Our Cozy Bed & Breakfast - Your Home Away from Home. Enjoy Comfortable Rooms, Delicious Breakfast, and a Warm Hospitality. Book Your Stay Now.">
+    <meta name="keywords"
+        content="Bed & Breakfast, B&B, Cozy Stay, Comfortable Rooms, Delicious Breakfast, Warm Hospitality, Book Now">
+    <meta name="author" content="B&B Dimora Orrù">
+    <title>B&B Dimora Orrù - Cozy Bed & Breakfast</title>
+
+    <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "BedAndBreakfast",
+          "name": "B&B Dimora Orrù",
+          "description": "Welcome to Our Cozy Bed & Breakfast - Your Home Away from Home. Enjoy Comfortable Rooms, Delicious Breakfast, and a Warm Hospitality. Book Your Stay Now!",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Via Gianbattista Tuveri 15",
+            "addressLocality": "Cabras",
+            "addressRegion": "Oristano",
+            "postalCode": "09072",
+            "addressCountry": "Italy"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "39.9320805085887",
+            "longitude": "8.529486828037045"
+          }
+        }
+    </script>
+
+    <style>
+        :root {
+            --main-bg-color: #FCFDFF;
+            --header-bg-color: #B59E83;
+            --header-text-color: #FCFDFF;
+            --hover-bg-color: #9e866c;
+            --section-bg-color: #f9f9f9;
+            --font-color: #333;
+            --carousel-bg-color: rgba(0, 0, 0, 0.5);
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--font-color);
+            background-color: var(--main-bg-color);
+            overflow-x: hidden;
+        }
+
+        header {
+            font-family: Bert sans, sans-serif;
+            font-size: 120%;
+            background-color: var(--header-bg-color);
+            color: var(--header-text-color);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            font-family: Bert sans, sans-serif;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color:white;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px 10px;
+            box-sizing: border-box;
+        }
+
+        img {
+            border-radius: 10px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        section {
+            margin: 30px 0;
+            padding-top: 10%;
+        }
+
+        .rooms,
+        .breakfast,
+        .location {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .rooms div,
+        .breakfast div,
+        .location div {
+            flex: 1 1 45%;
+            margin: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--section-bg-color);
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 80%;
+            margin: auto;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            box-sizing: border-box;
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-sizing: border-box;
+        }
+
+        .prev_custom,
+        .next_custom {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: auto;
+            padding: 16px;
+            color: var(--header-text-color);
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 5px;
+            user-select: none;
+            background: var(--carousel-bg-color);
+            z-index: 100;
+        }
+
+        .prev_custom {
+            left: 10px;
+        }
+
+        .next_custom {
+            right: 10px;
+        }
+
+        h2 {
+            font-family: Bert sans, sans-serif;
+            font-size: 260%;
+            text-align: center;
+        }
+
+        h3 {
+            font-family: Bert sans, sans-serif;
+            font-size: 150%;
+        }
+
+        .image-container {
+            position: relative;
+        }
+
+        .description {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent background */
+            color: white;
+            padding: 0.3em;
+            /* Reduce padding for text margins */
+            box-sizing: border-box;
+            border-bottom-left-radius: 10px;
+            /* Inherit smooth edges of the image */
+            border-bottom-right-radius: 10px;
+            /* Inherit smooth edges of the image */
+            height: 10%;
+            /* Adjust the height of the overlay bar */
+            font-size: min(2vw, 2vh);
+            /* Font size proportional to viewport width and height */
+            display: flex;
+            /* Enable flexbox */
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+        }
+
+        @media (max-width: 480px) {
+            .description {
+                font-size: 120%;
+                /* Increase font size for smaller mobile resolutions */
+            }
+        }
+
+        footer {
+            background-color: var(--header-bg-color);
+            text-align: center;
+            color: var(--header-text-color);
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+
+            .rooms,
+            .breakfast,
+            .location {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .rooms div,
+            .breakfast div,
+            .location div {
+                flex: 1 1 100%;
+                margin: 10px 0;
+                padding: 10px;
+                max-width: 90%;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin-bottom: 10px;
+            }
+
+            header {
+                padding: 10px 0;
+            }
+
+            .rooms div,
+            .breakfast div,
+            .location div {
+                padding: 10px;
+            }
+
+            h2 {
+                font-size: 120%;
+            }
+        }
+
+
+
+        .uplisting-border {
+            background-color: transparent;
+            padding: 1px;
+            /* Thin border */
+            display: flex;
+            justify-content: center;
+            /* Center horizontally */
+        }
+
+        .uplisting-widget {
+            background-color: #fff;
+            border: 1px solid #333;
+            /* Thin black border */
+            border-radius: 8px;
+            /* Smooth edges */
+            padding: 20px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .animated-word-wrap {
+            max-width: 823px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            /* Stack elements vertically */
+        }
+
+        .animated-word-div {
+            display: flex;
+            align-items: left;
+            justify-content: center;
+            flex-direction: column;
+            /* Stack elements vertically */
+        }
+
+
+        .changer-black {
+            color: #333;
+            font-family: Bert sans, sans-serif;
+            font-size: 35px;
+            font-weight: 700;
+            line-height: 1.2;
+            text-align: left;
+            padding-bottom: 10px;
+        }
+
+        .changer {
+            color: #489FC6;
+            font-family: Bert sans, sans-serif;
+            font-size: 35px;
+            font-weight: 700;
+            display: none;
+            /* Hide all changers by default */
+            margin-right: 10px;
+            animation: slideUp 1s ease-in-out forwards;
+            /* Apply animation */
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            /* Start position */
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* End position */
+        }
+
+
+        .changer.active {
+            display: block;
+            /* Show active changer */
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <header>
+        <h1>B&B Dimora Orrù</h1>
+        <nav>
+            <ul>
+                <li><a href="#rooms">Stanze</a></li>
+                <li><a href="#breakfast">Colazione</a></li>
+                <li><a href="#location">Dove siamo</a></li>
+                <li><a href="#reviews">Dicono di noi</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section id="rooms">
+            <div class="animated-word-wrap">
+                <div class="animated-word-div">
+                    <div class="changer-black">Dimora Orrù è un Bed and Breakfast</div>
+                    <div class="changing-words">
+                        <div class="changer">moderno</div>
+                        <div class="changer">con check-in autonomo</div>
+                        <div class="changer">a gestione famigliare</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="rooms">
+            <h2 class=>Le camere</h2>
+            <div class="rooms">
+                <div>
+                    <h3>Camera Oliva</h3>
+                    <a href="https://www.bnbdimoraorru.it/cabras/dimora-orr%25C3%25B9---quadruple-apartment/6f41d9">
+                        <img src="https://cdn.filestackcontent.com/auto_image/compress/resize=width:768/0xLO1Vc6ShmvB0UzJ6j0"
+                            alt="Camera Oliva" loading="lazy"></a>
+                    <p>Camera quadrupla con bagno privato.</p>
+                </div>
+                <div>
+                    <h3>Camera Uva</h3>
+                    <a href="https://www.bnbdimoraorru.it/cabras/dimora-orr%25C3%25B9---two-private-bedrooms/d93a5d">
+                        <img src="https://cdn.filestackcontent.com/auto_image/compress/resize=width:1024/IE5q8ynxQla4QkMfE9E1"
+                            alt="Camera Uva" loading="lazy"></a>
+                    <p>Due camere doppie con bagno privato in comune.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="uplisting-border">
+            <div class="uplisting-widget">
+            </div>
+        </div>
+
+
+        <section id="breakfast">
+            <h2>Opzioni colazione</h2>
+            <div class="carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-941857391660266829/original/92f090a7-5c6e-4141-b5c3-0b78a21bc931.jpeg?im_w=1200"
+                            alt="Breakfast Option 1" loading="lazy">
+                        <div class="description">Dolce</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-941857391660266829/original/dde5f9df-b322-4d1b-80d0-36a05f9df895.jpeg?im_w=1200"
+                            alt="Breakfast Option 2" loading="lazy">
+                        <div class="description">Salato</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-941857391660266829/original/6bb6a17b-195d-4fa2-96d7-ef406865433d.jpeg?im_w=1200"
+                            alt="Breakfast Option 3" loading="lazy">
+                        <div class="description">Dolce per celiaci</div>
+
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-941857391660266829/original/dde5f9df-b322-4d1b-80d0-36a05f9df895.jpeg?im_w=1200"
+                            alt="Breakfast Option 4" loading="lazy">
+                        <div class="description">Salato per celiaci</div>
+                    </div>
+                </div>
+                <a class="prev_custom" onclick="moveSlide(-1)">&#10094;</a>
+                <a class="next_custom" onclick="moveSlide(1)">&#10095;</a>
+            </div>
+        </section>
+
+        <section id="location" style="width: 90%; margin: auto;">
+            <h2>Dove trovarci</h2>
+            <div style="padding-bottom: 6%;">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1740.3990562546426!2d8.529486828037045!3d39.9320805085887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12dd9ff01699b56d%3A0x45b5a5d517844c3a!2sB%26B%20Dimora%20Orr%C3%B9!5e0!3m2!1sit!2sse!4v1718119768402!5m2!1sit!2sse"
+                    width="100%" height=450px style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <section>
+            <h2>Dicono di noi</h2>
+            <div style="display: flex; justify-content: center;">
+                <div id="TA_cdsratingsonlywide916" class="TA_cdsratingsonlywide">
+                    <ul id="UAKVPb" class="TA_links tmc3Gsp">
+                        <li id="I9i83m" class="FI4v6Hkg"><a target="_blank"
+                                href="https://www.tripadvisor.com/Hotel_Review-g1144101-d26680883-Reviews-B_b_Dimora_Orru-Cabras_Province_of_Oristano_Sardinia.html"><img
+                                    src="https://www.tripadvisor.com/img/cdsi/img2/branding/v2/Tripadvisor_lockup_horizontal_secondary_registered-18034-2.svg"
+                                    alt="TripAdvisor" /></a></li>
+                    </ul>
+                </div>
+            </div>
+            <script async
+                src="https://www.jscache.com/wejs?wtype=cdsratingsonlywide&amp;uniq=916&amp;locationId=26680883&amp;lang=en_US&amp;border=true&amp;display_version=2"
+                data-loadtrk onload="this.loadtrk=true"></script>
+        </section>
+
+    </main>
+
+
+
+    <footer>
+        <p>&copy; 2024 B&B Dimora Orrù. All rights reserved.</p>
+    </footer>
+
+
+
+
+
+
+
+    <script type="text/javascript" src="https://d2n64sniz4ei2k.cloudfront.net/property-search-f6490f4d.js"></script>
+    <script type="text/javascript">
+        window.uplistingSearchWidget.init({
+            baseUrl: 'https://www.bnbdimoraorru.it',
+            showLocation: false,
+            locationText: 'All cities',
+            locations: ['REPLACE WITH CITY', 'REPLACE WITH CITY'],
+            color: '#000',
+            insertAt: '.uplisting-widget',
+            guestsMin: 2,
+            guestsMax: 4,
+            textColor: '#f9f9f9',
+            backgroundColor: '#489FC6',
+            buttonText: 'VEDI DISPONIBILITA',
+        });
+    </script>
+
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            if (index >= totalSlides) {
+                slideIndex = 0;
+            } else if (index < 0) {
+                slideIndex = totalSlides - 1;
+            }
+            const offset = -slideIndex * 100;
+            document.querySelector('.carousel-container').style.transform = 'translateX(' + offset + '%)';
+        }
+
+        function moveSlide(n) {
+            slideIndex += n;
+            showSlide(slideIndex);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            showSlide(slideIndex);
+        });
+    </script>
+    <script>
+        // Function to check if an element is in the viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        // Function to add animation class to elements in viewport
+        function animateElementsOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            elements.forEach(element => {
+                if (isInViewport(element)) {
+                    element.classList.add('animate');
+                }
+            });
+        }
+
+        // Add event listener for scroll event
+        window.addEventListener('scroll', animateElementsOnScroll);
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const changers = document.querySelectorAll('.changer');
+            let index = 0;
+
+            changers[0].classList.add('active'); // Add 'active' class to the first changer
+
+            setInterval(() => {
+                changers.forEach((changer, i) => {
+                    if (i === index) {
+                        changer.classList.add('active');
+                    } else {
+                        changer.classList.remove('active');
+                    }
+                });
+
+                index = (index + 1) % changers.length;
+            }, 2000); // Change word every 2 seconds
+        });
+    </script>
+
+
+    <script>
+        function handleFirstScroll() {
+            const header = document.querySelector('header');
+
+            // Add a class to make the header sticky
+            header.classList.add('sticky');
+
+            // Remove the sticky class after a short delay
+            setTimeout(function () {
+                header.classList.remove('sticky');
+            }, 1000); // Adjust the delay as needed (in milliseconds)
+
+            // Remove the event listener to prevent further handling of scroll events
+            window.removeEventListener('scroll', handleFirstScroll);
+        }
+
+        // Add event listener for the first scroll event
+        window.addEventListener('scroll', handleFirstScroll);
+    </script>
+
+
+<script>
+    let startX;
+    let dist;
+    let isDragging = false;
+
+    document.querySelector('.carousel-container').addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    });
+
+    document.querySelector('.carousel-container').addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const currentX = e.touches[0].clientX;
+        dist = currentX - startX;
+        document.querySelector('.carousel-container').style.transform = `translateX(${dist}px)`;
+    });
+
+    document.querySelector('.carousel-container').addEventListener('touchend', () => {
+        isDragging = false;
+        if (Math.abs(dist) > 100) {
+            // Swipe left
+            if (dist > 0) moveSlide(-1);
+            // Swipe right
+            else moveSlide(1);
+        }
+        document.querySelector('.carousel-container').style.transform = 'translateX(0)';
+    });
+</script>
+
+
+
+</body>
+
+</html>
