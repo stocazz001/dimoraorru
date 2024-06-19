@@ -5,24 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Welcome to Our Cozy Bed & Breakfast - Your Home Away from Home. Enjoy Comfortable Rooms, Delicious Breakfast, and a Warm Hospitality. Book Your Stay Now.">
+        content="Benvenuti nel nostro accogliente Bed & Breakfast - La vostra casa lontano da casa. Godetevi camere confortevoli, colazione deliziosa e un'ospitalità calorosa. Prenotate il vostro soggiorno ora!">
     <meta name="keywords"
         content="Bed & Breakfast, B&B, Cozy Stay, Comfortable Rooms, Delicious Breakfast, Warm Hospitality, Book Now">
     <meta name="author" content="B&B Dimora Orrù">
     <title>B&B Dimora Orrù - Cozy Bed & Breakfast</title>
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" alt="Favicon">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" alt="Favicon">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" alt="Favicon">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" alt="Favicon">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" alt="Favicon">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" alt="Favicon">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" alt="Favicon">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" alt="Favicon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" alt="Favicon">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png" alt="Favicon">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" alt="Favicon">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" alt="Favicon">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" alt="Favicon">
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -181,6 +181,7 @@
             text-align: center;
         }
 
+        /* General carousel container */
         .carousel {
             position: relative;
             max-width: 80%;
@@ -236,6 +237,10 @@
         .next_custom {
             right: 10px;
         }
+
+
+
+
 
         h2 {
             font-family: Bert sans, sans-serif;
@@ -479,7 +484,7 @@
 
     <main class="container">
 
-        <section id="rooms">
+        <section>
             <div class="animated-word-wrap">
                 <div class="animated-word-div">
                     <div class="changer-black">Dimora Orrù è un Bed and Breakfast</div>
@@ -501,14 +506,14 @@
                     <h3>Camera Oliva</h3>
                     <a href="https://book.bnbdimoraorru.it/cabras/dimora-orr%25C3%25B9---quadruple-apartment/6f41d9">
                         <img src="https://cdn.filestackcontent.com/auto_image/compress/resize=width:768/0xLO1Vc6ShmvB0UzJ6j0"
-                            alt="Camera Oliva" loading="lazy"></a>
+                            alt="Foto camera quadrupla" loading="lazy"></a>
                     <p>Camera quadrupla con bagno privato.</p>
                 </div>
                 <div>
                     <h3>Camera Uva</h3>
                     <a href="https://book.bnbdimoraorru.it/cabras/dimora-orr%25C3%25B9---two-private-bedrooms/d93a5d">
                         <img src="https://cdn.filestackcontent.com/auto_image/compress/resize=width:1024/IE5q8ynxQla4QkMfE9E1"
-                            alt="Camera Uva" loading="lazy"></a>
+                            alt="Foto due camere doppie" loading="lazy"></a>
                     <p>Due camere doppie con bagno privato in comune.</p>
                 </div>
             </div>
@@ -519,39 +524,41 @@
             </div>
         </div>
 
-
+        
         <section id="breakfast">
             <h2>Opzioni colazione</h2>
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
+            <div class="carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide">
                         <img src="https://a0.muscache.com/im/pictures/miso/Hosting-941857391660266829/original/92f090a7-5c6e-4141-b5c3-0b78a21bc931.jpeg?im_w=1200"
-                            alt="Breakfast Option 1" loading="lazy">
+                            alt="Colazione dolce" loading="lazy">
                         <div class="description">Dolce</div>
                     </div>
-                    <div class="swiper-slide">
+                    <div class="carousel-slide">
                         <img src="https://a0.muscache.com/im/pictures/miso/Hosting-941857391660266829/original/dde5f9df-b322-4d1b-80d0-36a05f9df895.jpeg?im_w=1200"
-                            alt="Breakfast Option 2" loading="lazy">
+                            alt="Colazione salata" loading="lazy">
                         <div class="description">Salato</div>
                     </div>
-                    <div class="swiper-slide">
+                    <div class="carousel-slide">
                         <img src="https://a0.muscache.com/im/pictures/miso/Hosting-941857391660266829/original/6bb6a17b-195d-4fa2-96d7-ef406865433d.jpeg?im_w=1200"
-                            alt="Breakfast Option 3" loading="lazy">
+                            alt="Colazione dolce per celiaci" loading="lazy">
                         <div class="description">Dolce per celiaci</div>
                     </div>
-                    <div class="swiper-slide">
+                    <div class="carousel-slide">
                         <img src="https://a0.muscache.com/im/pictures/miso/Hosting-941857391660266829/original/dde5f9df-b322-4d1b-80d0-36a05f9df895.jpeg?im_w=1200"
-                            alt="Breakfast Option 4" loading="lazy">
+                            alt="Colazione salata per celiaci" loading="lazy">
                         <div class="description">Salato per celiaci</div>
                     </div>
                 </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-                <!-- Add Navigation -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <a class="prev_custom" onclick="moveSlide(-1)">&#10094;</a>
+                <a class="next_custom" onclick="moveSlide(1)">&#10095;</a>
             </div>
         </section>
+        
+        
+
+
+
 
 
         <section id="location" style="width: 90%; margin: auto;">
@@ -596,7 +603,7 @@
     <script type="text/javascript" src="https://d2n64sniz4ei2k.cloudfront.net/property-search-f6490f4d.js"></script>
     <script type="text/javascript">
         window.uplistingSearchWidget.init({
-            baseUrl: 'https://book.bnbdimoraorru.it',
+            baseUrl: 'https://www.bnbdimoraorru.it',
             showLocation: false,
             locationText: 'All cities',
             locations: ['REPLACE WITH CITY', 'REPLACE WITH CITY'],
@@ -703,69 +710,36 @@
     </script>
 
 
-    <script>
-        let startX;
-        let dist;
-        let isDragging = false;
+<script>
+    let startX;
+    let dist;
+    let isDragging = false;
 
-        document.querySelector('.carousel-container').addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            isDragging = true;
-        });
+    document.querySelector('.carousel-container').addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    });
 
-        document.querySelector('.carousel-container').addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            const currentX = e.touches[0].clientX;
-            dist = currentX - startX;
-            document.querySelector('.carousel-container').style.transform = `translateX(${dist}px)`;
-        });
+    document.querySelector('.carousel-container').addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const currentX = e.touches[0].clientX;
+        dist = currentX - startX;
+        document.querySelector('.carousel-container').style.transform = `translateX(${dist}px)`;
+    });
 
-        document.querySelector('.carousel-container').addEventListener('touchend', () => {
-            isDragging = false;
-            if (Math.abs(dist) > 100) {
-                // Swipe left
-                if (dist > 0) moveSlide(-1);
-                // Swipe right
-                else moveSlide(1);
-            }
-            document.querySelector('.carousel-container').style.transform = 'translateX(0)';
-        });
-    </script>
+    document.querySelector('.carousel-container').addEventListener('touchend', () => {
+        isDragging = false;
+        if (Math.abs(dist) > 100) {
+            // Swipe left
+            if (dist > 0) moveSlide(-1);
+            // Swipe right
+            else moveSlide(1);
+        }
+        document.querySelector('.carousel-container').style.transform = 'translateX(0)';
+    });
+</script>
 
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var swiper = new Swiper('.swiper-container', {
-                slidesPerView: 1,
-                spaceBetween: 10,
-                loop: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                // Enable mouse and touch interactions
-                mousewheel: false,
-                grabCursor: true,
-            });
-        });
-    </script>
-
-
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 
 </body>
+
 </html>
