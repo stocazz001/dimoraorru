@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
     <meta charset="UTF-8">
@@ -19,11 +19,13 @@
     <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -31,15 +33,49 @@
         {
           "@context": "http://schema.org",
           "@type": "BedAndBreakfast",
-          "name": "B&B Dimora Orrù",
-          "description": "Welcome to Our Cozy Bed & Breakfast - Your Home Away from Home. Enjoy Comfortable Rooms, Delicious Breakfast, and a Warm Hospitality. Book Your Stay Now!",
+          "name": [
+            {
+              "@language": "en",
+              "@value": "B&B Dimora Orrù"
+            },
+            {
+              "@language": "it",
+              "@value": "B&B Dimora Orrù"
+            },
+            {
+              "@language": "es",
+              "@value": "B&B Dimora Orrù"
+            },
+            {
+              "@language": "fr",
+              "@value": "B&B Dimora Orrù"
+            }
+          ],
+          "description": [
+            {
+              "@language": "en",
+              "@value": "Welcome to Our Cozy Bed & Breakfast - Your Home Away from Home. Enjoy Comfortable Rooms, Delicious Breakfast, and a Warm Hospitality. Book Your Stay Now!"
+            },
+            {
+              "@language": "it",
+              "@value": "Benvenuti nel nostro accogliente Bed & Breakfast - La vostra casa lontano da casa. Godetevi camere confortevoli, colazione deliziosa e un'ospitalità calorosa. Prenotate il vostro soggiorno ora!"
+            },
+            {
+              "@language": "es",
+              "@value": "Bienvenido a nuestro acogedor Bed & Breakfast - Su hogar lejos del hogar. Disfrute de habitaciones cómodas, un desayuno delicioso y una cálida hospitalidad. ¡Reserve su estancia ahora!"
+            },
+            {
+              "@language": "fr",
+              "@value": "Bienvenue dans notre Bed & Breakfast confortable - Votre chez-vous loin de chez-vous. Profitez de chambres confortables, d'un délicieux petit-déjeuner et d'une hospitalité chaleureuse. Réservez votre séjour maintenant!"
+            }
+          ],
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "Via Gianbattista Tuveri 15",
             "addressLocality": "Cabras",
             "addressRegion": "Oristano",
             "postalCode": "09072",
-            "addressCountry": "Italy"
+            "addressCountry": "IT"
           },
           "geo": {
             "@type": "GeoCoordinates",
@@ -47,7 +83,8 @@
             "longitude": "8.529486828037045"
           }
         }
-    </script>
+        </script>
+
 
     <style>
         :root {
@@ -58,6 +95,10 @@
             --section-bg-color: #f9f9f9;
             --font-color: #333;
             --carousel-bg-color: rgba(0, 0, 0, 0.5);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
 
@@ -96,7 +137,7 @@
             text-decoration: none;
             padding: 10px 20px;
             border-radius: 5px;
-            color:white;
+            color: white;
         }
 
         .container {
@@ -386,6 +427,37 @@
             display: block;
             /* Show active changer */
         }
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 
@@ -412,9 +484,10 @@
                 <div class="animated-word-div">
                     <div class="changer-black">Dimora Orrù è un Bed and Breakfast</div>
                     <div class="changing-words">
-                        <div class="changer">moderno</div>
-                        <div class="changer">con check-in autonomo</div>
+                        <div class="changer">innovativo</div>
                         <div class="changer">a gestione famigliare</div>
+                        <div class="changer">moderno</div>
+
                     </div>
                 </div>
             </div>
@@ -449,45 +522,47 @@
 
         <section id="breakfast">
             <h2>Opzioni colazione</h2>
-            <div class="carousel">
-                <div class="carousel-container">
-                    <div class="carousel-slide">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
                         <img src="https://a0.muscache.com/im/pictures/miso/Hosting-941857391660266829/original/92f090a7-5c6e-4141-b5c3-0b78a21bc931.jpeg?im_w=1200"
                             alt="Breakfast Option 1" loading="lazy">
                         <div class="description">Dolce</div>
                     </div>
-                    <div class="carousel-slide">
+                    <div class="swiper-slide">
                         <img src="https://a0.muscache.com/im/pictures/miso/Hosting-941857391660266829/original/dde5f9df-b322-4d1b-80d0-36a05f9df895.jpeg?im_w=1200"
                             alt="Breakfast Option 2" loading="lazy">
                         <div class="description">Salato</div>
                     </div>
-                    <div class="carousel-slide">
+                    <div class="swiper-slide">
                         <img src="https://a0.muscache.com/im/pictures/miso/Hosting-941857391660266829/original/6bb6a17b-195d-4fa2-96d7-ef406865433d.jpeg?im_w=1200"
                             alt="Breakfast Option 3" loading="lazy">
                         <div class="description">Dolce per celiaci</div>
-
                     </div>
-                    <div class="carousel-slide">
+                    <div class="swiper-slide">
                         <img src="https://a0.muscache.com/im/pictures/miso/Hosting-941857391660266829/original/dde5f9df-b322-4d1b-80d0-36a05f9df895.jpeg?im_w=1200"
                             alt="Breakfast Option 4" loading="lazy">
                         <div class="description">Salato per celiaci</div>
                     </div>
                 </div>
-                <a class="prev_custom" onclick="moveSlide(-1)">&#10094;</a>
-                <a class="next_custom" onclick="moveSlide(1)">&#10095;</a>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Add Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </section>
+
 
         <section id="location" style="width: 90%; margin: auto;">
             <h2>Dove trovarci</h2>
             <div style="padding-bottom: 6%;">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1740.3990562546426!2d8.529486828037045!3d39.9320805085887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12dd9ff01699b56d%3A0x45b5a5d517844c3a!2sB%26B%20Dimora%20Orr%C3%B9!5e0!3m2!1sit!2sse!4v1718119768402!5m2!1sit!2sse"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2298.259917371047!2d8.530271254705276!3d39.932084528747836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12dd9ff01699b56d%3A0x45b5a5d517844c3a!2sB%26B%20Dimora%20Orr%C3%B9!5e0!3m2!1sit!2sse!4v1718828301042!5m2!1sit!2sse"
                     width="100%" height=450px style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </section>
-
-        <section>
+        <section id="reviews">
             <h2>Dicono di noi</h2>
             <div style="display: flex; justify-content: center;">
                 <div id="TA_cdsratingsonlywide916" class="TA_cdsratingsonlywide">
@@ -509,7 +584,7 @@
 
 
     <footer>
-        <p>&copy; 2024 B&B Dimora Orrù. All rights reserved.</p>
+        <p>&copy; 2024 B&B Dimora Orrù</p>
     </footer>
 
 
@@ -628,37 +703,69 @@
     </script>
 
 
-<script>
-    let startX;
-    let dist;
-    let isDragging = false;
+    <script>
+        let startX;
+        let dist;
+        let isDragging = false;
 
-    document.querySelector('.carousel-container').addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        isDragging = true;
-    });
+        document.querySelector('.carousel-container').addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        });
 
-    document.querySelector('.carousel-container').addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        const currentX = e.touches[0].clientX;
-        dist = currentX - startX;
-        document.querySelector('.carousel-container').style.transform = `translateX(${dist}px)`;
-    });
+        document.querySelector('.carousel-container').addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const currentX = e.touches[0].clientX;
+            dist = currentX - startX;
+            document.querySelector('.carousel-container').style.transform = `translateX(${dist}px)`;
+        });
 
-    document.querySelector('.carousel-container').addEventListener('touchend', () => {
-        isDragging = false;
-        if (Math.abs(dist) > 100) {
-            // Swipe left
-            if (dist > 0) moveSlide(-1);
-            // Swipe right
-            else moveSlide(1);
-        }
-        document.querySelector('.carousel-container').style.transform = 'translateX(0)';
-    });
-</script>
+        document.querySelector('.carousel-container').addEventListener('touchend', () => {
+            isDragging = false;
+            if (Math.abs(dist) > 100) {
+                // Swipe left
+                if (dist > 0) moveSlide(-1);
+                // Swipe right
+                else moveSlide(1);
+            }
+            document.querySelector('.carousel-container').style.transform = 'translateX(0)';
+        });
+    </script>
 
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var swiper = new Swiper('.swiper-container', {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                // Enable mouse and touch interactions
+                mousewheel: false,
+                grabCursor: true,
+            });
+        });
+    </script>
+
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 
 </body>
-
 </html>
