@@ -32,7 +32,7 @@
     <script type="application/ld+json">
         {
           "@context": "http://schema.org",
-          "@type": "BedAndBreakfast",
+          "@type": "LodgingBusiness",
           "name": [
             {
               "@language": "en",
@@ -69,6 +69,8 @@
               "@value": "Bienvenue dans notre Bed & Breakfast confortable - Votre chez-vous loin de chez-vous. Profitez de chambres confortables, d'un délicieux petit-déjeuner et d'une hospitalité chaleureuse. Réservez votre séjour maintenant!"
             }
           ],
+          "url":"https://bnbdimoraorru.it",
+          "image":"https://bnbdimoraorru.it/cover.jpeg"
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "Via Gianbattista Tuveri 15",
@@ -81,6 +83,42 @@
             "@type": "GeoCoordinates",
             "latitude": "39.9320805085887",
             "longitude": "8.529486828037045"
+          },
+          "amenityFeature": [
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Free Wi-Fi"
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Parking"
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Garden"
+          }
+        ],
+          "starRating": "5.0",
+          "paymentAccepted": "Credit Card",
+          "currenciesAccepted": "EUR",
+          "priceRange": "$$",
+          "numberOfRooms": "2",
+          "petsAllowed": "No",
+          "checkinTime": "13:00",
+          "checkoutTime": "10:00",
+
+          "potentialAction": {
+            "@type": "ReserveAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://book.bnbdimoraorru.it",
+              "inLanguage": "en-US",
+              "actionPlatform": [
+                "http://schema.org/DesktopWebPlatform",
+                "http://schema.org/IOSPlatform",
+                "http://schema.org/AndroidPlatform"
+              ]
+            }
           }
         }
         </script>
