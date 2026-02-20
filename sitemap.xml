@@ -1,39 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <!-- Home page -->
-    <url>
-        <loc>https://bnbdimoraorru.it/</loc>
-        <lastmod>2024-06-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <!-- Booking page -->
-    <url>
-        <loc>https://book.bnbdimoraorru.it/</loc>
-        <lastmod>2024-06-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-
-    <url>
-        <loc>https://book.bnbdimoraorru.it/listings/</loc>
-        <lastmod>2024-06-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://book.bnbdimoraorru.it/cabras/dimora-orr%25C3%25B9---quadruple-apartment/6f41d9/</loc>
-        <lastmod>2024-06-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-
-    <url>
-        <loc>https://book.bnbdimoraorru.it/cabras/dimora-orr%25C3%25B9---two-private-bedrooms/d93a5d</loc>
-        <lastmod>2024-06-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
+  <url>
+    <loc>https://www.bnbdimoraorru.it/</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 </urlset>
