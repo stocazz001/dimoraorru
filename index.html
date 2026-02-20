@@ -141,6 +141,24 @@
       border:1px solid rgba(255,255,255,.25);
     }
 
+
+    .navbox{display:flex; align-items:center; gap:10px; justify-content:flex-end}
+    .cta-standalone{display:inline-flex}
+    .nav-toggle{position:absolute; opacity:0; pointer-events:none}
+    .nav-toggle-btn{
+      display:none;
+      width:42px; height:42px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(255,255,255,.18);
+      align-items:center; justify-content:center;
+      cursor:pointer;
+    }
+    .nav-toggle-btn span{display:block; width:18px; height:2px; background:#fff; margin:2px 0; border-radius:2px}
+    .navbox nav{order:1}
+    .navbox .cta-standalone{order:2}
+    .navbox .nav-toggle-btn{order:3}
+
     .hero{padding:40px 0 22px}
     .hero-grid{
       display:grid; grid-template-columns:1.1fr .9fr; gap:18px; align-items:stretch;
@@ -225,6 +243,42 @@
       .split{grid-template-columns:1fr}
       .hero-copy h2{font-size:28px}
     }
+
+
+    @media (max-width: 680px){
+      .header-inner{flex-wrap:wrap; padding:12px 0}
+      .brand{width:100%}
+      .brand h1{font-size:15px}
+      .brand small{font-size:12px}
+
+      .navbox{width:100%; justify-content:space-between}
+      .cta-standalone{order:1}
+      .nav-toggle-btn{order:2}
+      nav{order:3}
+      nav{width:100%}
+      nav ul{display:none; flex-direction:column; width:100%; align-items:stretch; gap:6px; padding:10px 0 0; justify-content:flex-start}
+      nav a{padding:10px 12px}
+      .nav-toggle-btn{display:inline-flex}
+      .nav-toggle:checked ~ nav ul{display:flex}
+
+      .hero{padding:22px 0 14px}
+      .hero-copy{padding:16px}
+      .hero-copy h2{font-size:24px}
+      .hero-actions{flex-direction:column}
+      .btn{width:100%}
+      .cta-standalone{padding:10px 12px; font-size:14px}
+
+      .hero-img{min-height:200px}
+      section{padding:20px 0}
+      .card-body{padding:14px}
+      .card-actions{flex-direction:column}
+      iframe{height:320px !important}
+    }
+
+    @media (max-width: 420px){
+      .container{padding:0 14px}
+      .hero-copy h2{font-size:22px}
+    }
   </style>
 </head>
 <body>
@@ -237,16 +291,21 @@
 <h1>B&amp;B Dimora Orrù</h1>
 <small>CIN IT095018B4000F4668 · IUN F4668 · Cabras (OR)</small>
 </div>
+<div class="navbox">
+<a class="cta cta-standalone" href="https://book.bnbdimoraorru.it/booking.php?propid=312937&amp;lang=it">Prenota</a>
+<input class="nav-toggle" id="nav-toggle" type="checkbox"/>
+<label class="nav-toggle-btn" for="nav-toggle" aria-label="Menu">
+  <span></span><span></span><span></span>
+</label>
 <nav aria-label="Navigazione principale">
-<ul>
-<li><a href="#camere">Camere</a></li>
-<li><a href="#dove">Dove siamo</a></li>
-<li><a href="#recensioni">Recensioni</a></li>
-<li><a href="#contatti">Contatti</a></li>
-<li><a class="cta" href="https://book.bnbdimoraorru.it/booking.php?propid=312937&amp;lang=it">Prenota</a></li>
-</ul>
+  <ul>
+    <li><a href="#camere">Camere</a></li>
+    <li><a href="#dove">Dove siamo</a></li>
+    <li><a href="#recensioni">Recensioni</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
 </nav>
-</div>
+</div></div>
 </header>
 <main class="container">
 <section aria-label="Introduzione" class="hero">
