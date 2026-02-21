@@ -355,10 +355,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       header .lang-switch{margin-left:10px}
     }
 
-    /* Language dropdown (SEO-friendly) */
-    .lang-dd{position:relative; display:inline-flex}
-    .lang-dd > summary{list-style:none}
-    .lang-dd > summary::-webkit-details-marker{display:none}
+    
+    /* Language dropdown (JS) */
+    .lang-dd{position:relative; display:inline-flex; align-items:center}
     .lang-btn{
       display:inline-flex; align-items:center; gap:8px;
       border:1px solid rgba(255,255,255,.22);
@@ -386,7 +385,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       z-index:60;
       backdrop-filter: blur(10px);
       box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      display:none;
     }
+    .lang-dd.open .lang-menu{display:block}
     .lang-item{
       display:block;
       width:100%;
@@ -398,9 +399,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .lang-item:hover{background:rgba(255,255,255,.10)}
     .lang-item[aria-current="page"]{background:rgba(255,255,255,.16)}
-
-    .lang-dd:not([open]) .lang-menu{display:none}
-
 </style>
 </head>
 <body>
@@ -423,14 +421,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         data-location="header"
         href="https://book.bnbdimoraorru.it/booking.php?propid=312937"
       >Book</a>
-      <details class="lang-dd" aria-label="Language">
-        <summary class="lang-btn" aria-haspopup="menu">🇬🇧 EN</summary>
-        <div class="lang-menu" role="menu" aria-label="Language menu">
-          <a class="lang-item" href="/" hreflang="it" lang="it" aria-label="Italiano" role="menuitem">🇮🇹 Italiano</a>
-          <a class="lang-item" href="/en/" hreflang="en" lang="en" aria-label="English" role="menuitem" aria-current="page">🇬🇧 English</a>
-          <a class="lang-item" href="/de/" hreflang="de" lang="de" aria-label="Deutsch" role="menuitem">🇩🇪 Deutsch</a>
+            <div class="lang-dd" id="langDD">
+        <button class="lang-btn" id="langBtn" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Language">🇬🇧 EN</button>
+        <div class="lang-menu" id="langMenu" role="menu" aria-label="Language menu">
+            <a class="lang-item" href="/" role="menuitem">🇮🇹 Italiano</a>
+            <a class="lang-item" href="/en/" aria-current="page" role="menuitem">🇬🇧 English</a>
+            <a class="lang-item" href="/de/" role="menuitem">🇩🇪 Deutsch</a>
         </div>
-      </details>
+      </div>
 
 </div>
 
@@ -733,6 +731,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
+
+
+<script>
+(function initLangDropdown(){
+  var dd = document.getElementById("langDD");
+  var btn = document.getElementById("langBtn");
+  var menu = document.getElementById("langMenu");
+  if(!dd || !btn || !menu) return;
+
+  function open(){ dd.classList.add("open"); btn.setAttribute("aria-expanded","true"); }
+  function close(){ dd.classList.remove("open"); btn.setAttribute("aria-expanded","false"); }
+
+  btn.addEventListener("click", function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    if(dd.classList.contains("open")) close(); else open();
+  });
+
+  document.addEventListener("click", function(e){
+    if(!dd.contains(e.target)) close();
+  });
+
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape") close();
+  });
+
+  // Close after selecting a language (anchor will navigate)
+  menu.addEventListener("click", function(){
+    close();
+  });
+})();
+</script>
 
 </body>
 </html>
