@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta content="B&amp;B Dimora Orrù" name="author"/>
 <!-- Open Graph -->
 <meta content="B&amp;B Dimora Orrù | Cabras, Sardegna" property="og:title"/>
-<meta content="Affittacamere a Cabras (Sinis/Oristano). Due camere confortevoli. Prenota direttamente dal sito ufficiale." property="og:description"/>
+<meta content="Bed &amp; Breakfast a Cabras (Sinis/Oristano). Due camere confortevoli. Prenota direttamente dal sito ufficiale." property="og:description"/>
 <meta content="website" property="og:type"/>
 <meta content="https://www.bnbdimoraorru.it/" property="og:url"/>
 <meta content="https://bnbdimoraorru.it/cover.jpeg" property="og:image"/>
@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
 <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
 <link href="/manifest.json" rel="manifest"/>
-<meta content="#B59E83" name="theme-color"/>
+<meta content="#2F6F6B" name="theme-color"/>
 
 <script type="application/ld+json">
   {
@@ -76,6 +76,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       --muted:#6b7280;
       --brand:#B59E83;
       --brand-dark:#9e866c;
+      --accent:#2F6F6B;
+      --accent-dark:#275F5B;
+      --accent-soft:rgba(47,111,107,.12);
       --card:#ffffff;
       --border:rgba(31,41,55,.10);
       --shadow:0 10px 25px rgba(0,0,0,.08);
@@ -97,10 +100,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     header{
       position:sticky; top:0; z-index:50;
-      background:rgba(181,158,131,.96);
+      background:linear-gradient(90deg, rgba(181,158,131,.96), rgba(47,111,107,.22));
       backdrop-filter:saturate(180%) blur(10px);
       color:#fff;
       border-bottom:1px solid rgba(255,255,255,.15);
+      transition: box-shadow .2s ease, background .2s ease;
+    }
+
+    header.scrolled{
+      box-shadow: 0 12px 24px rgba(0,0,0,.14);
     }
 
     .header-inner{
@@ -129,12 +137,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .cta{
       display:inline-flex; align-items:center; justify-content:center;
       padding:10px 14px; border-radius:12px;
-      background:#fff; color:var(--brand-dark);
+      background:var(--accent); color:#fff; border:1px solid rgba(255,255,255,.20);
       font-weight:700; text-decoration:none;
-      box-shadow:0 6px 14px rgba(0,0,0,.12);
+      box-shadow:0 10px 20px rgba(0,0,0,.18);
       white-space:nowrap;
+      transition:transform .12s ease, background .12s ease, box-shadow .12s ease;
     }
-    .cta:hover{transform:translateY(-1px)}
+    .cta:hover{transform:translateY(-1px); background:var(--accent-dark)}
     .cta.secondary{
       background:rgba(255,255,255,.18);
       color:#fff;
@@ -179,11 +188,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding:12px 14px; border-radius:12px;
       font-weight:700; text-decoration:none;
       border:1px solid transparent;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease, box-shadow .12s ease;
     }
-    .btn.primary{background:var(--brand);color:#fff}
-    .btn.primary:hover{background:var(--brand-dark)}
+    .btn.primary{background:var(--accent);color:#fff; box-shadow:0 10px 20px rgba(0,0,0,.12)}
+    .btn.primary:hover{background:var(--accent-dark)}
     .btn.ghost{background:transparent;border-color:var(--border);color:var(--text)}
-    .btn.ghost:hover{background:rgba(0,0,0,.03)}
+    .btn.ghost:hover{background:rgba(0,0,0,.03); border-color:rgba(47,111,107,.25)}
     .hero-img{
       width:100%; height:100%;
       object-fit:cover;
@@ -192,6 +202,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
 
     section{padding:28px 0}
+    section[id]{scroll-margin-top:90px}
     section h3.section-title{
       margin:0 0 14px;
       font-size:26px;
@@ -224,7 +235,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding:16px;
     }
     .info p{margin:0 0 10px;color:var(--muted)}
-    .info a{color:var(--brand-dark);font-weight:700;text-decoration:none}
+    .info a{color:var(--accent-dark);font-weight:700;text-decoration:none}
     .info a:hover{text-decoration:underline}
 
     footer{
@@ -250,15 +261,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .brand h1{font-size:15px}
       .brand small{font-size:12px}
 
+      /* When scrolling on mobile, keep the header compact */
+      header.scrolled .header-inner{padding:10px 0}
+      header.scrolled .brand small{opacity:.85}
+
       .navbox{width:100%; justify-content:space-between}
+      .navbox{justify-content:flex-end}
+      .nav-toggle, .nav-toggle-btn, nav{display:none !important}
       .cta-standalone{order:1}
-      .nav-toggle-btn{order:2}
-      nav{order:3}
-      nav{width:100%}
-      nav ul{display:none; flex-direction:column; width:100%; align-items:stretch; gap:6px; padding:10px 0 0; justify-content:flex-start}
-      nav a{padding:10px 12px}
-      .nav-toggle-btn{display:inline-flex}
-      .nav-toggle:checked ~ nav ul{display:flex}
 
       .hero{padding:22px 0 14px}
       .hero-copy{padding:16px}
@@ -272,11 +282,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .card-body{padding:14px}
       .card-actions{flex-direction:column}
       iframe{height:320px !important}
+      section[id]{scroll-margin-top:120px}
+    }
+
+    @media (max-width: 680px){
+      body.menu-open{overflow:hidden}
     }
 
     @media (max-width: 420px){
       .container{padding:0 14px}
       .hero-copy h2{font-size:22px}
+    }
+
+    a:focus-visible, button:focus-visible, .btn:focus-visible, .cta:focus-visible{
+      outline:3px solid rgba(47,111,107,.35);
+      outline-offset:2px;
     }
 </style>
 </head>
@@ -302,11 +322,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       >Prenota</a>
 
       <input class="nav-toggle" id="nav-toggle" type="checkbox"/>
-      <label class="nav-toggle-btn" for="nav-toggle" aria-label="Menu">
+      <label class="nav-toggle-btn" for="nav-toggle" aria-label="Menu" aria-controls="primary-nav" aria-expanded="false" role="button" tabindex="0">
         <span></span><span></span><span></span>
       </label>
 
-      <nav aria-label="Navigazione principale">
+      <nav id="primary-nav" aria-label="Navigazione principale">
         <ul>
           <li><a href="#camere">Camere</a></li>
           <li><a href="#dove">Dove siamo</a></li>
@@ -322,7 +342,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section aria-label="Introduzione" class="hero">
     <div class="hero-grid">
       <div class="hero-card hero-copy">
-        <h2>Affittacamere a Cabras, nel cuore del Sinis</h2>
+        <h2>Bed &amp; Breakfast a Cabras, nel cuore del Sinis</h2>
         <p>
           Due camere confortevoli e una posizione ideale per esplorare Is Arutas, Tharros e la costa di Oristano.
           Prenota direttamente dal sito ufficiale.
@@ -334,9 +354,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             data-location="hero"
             href="https://book.bnbdimoraorru.it/booking.php?propid=312937&amp;lang=it"
           >Verifica disponibilità</a>
-
-          <a class="btn ghost" href="https://wa.me/393492166046" rel="noopener">WhatsApp</a>
-          <a class="btn ghost" href="#dove">Apri la mappa</a>
+<a class="btn ghost" href="#dove">Apri la mappa</a>
         </div>
       </div>
 
@@ -460,18 +478,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </ul>
       </div>
       <script async="" src="https://www.jscache.com/wejs?wtype=selfserveprop&amp;uniq=506&amp;locationId=26680883&amp;lang=it&amp;rating=true&amp;nreviews=4&amp;writereviewlink=false&amp;popIdx=true&amp;iswide=true&amp;border=true&amp;display_version=2"></script>
-      <div style="display:grid;gap:12px;margin-top:12px;">
-        <img alt="Recensione 1" loading="lazy" src="https://bnbdimoraorru.it/review1.png"/>
-        <img alt="Recensione 2" loading="lazy" src="https://bnbdimoraorru.it/review2.png"/>
-        <img alt="Recensione 3" loading="lazy" src="https://bnbdimoraorru.it/review3.png"/>
-      </div>
     </div>
   </section>
 
   <section id="contatti">
     <h3 class="section-title">Contatti</h3>
     <div class="info">
-      <p><strong>Telefono / WhatsApp:</strong> <a href="tel:+393492166046">+39 349 216 6046</a></p>
+      <p><strong>Telefono:</strong> <a href="tel:+393492166046">+39 349 216 6046</a></p>
 
       <p class="fineprint">
         Nota: la tassa di soggiorno del Comune di Cabras (variabile) non è inclusa e si paga in struttura.
@@ -483,8 +496,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           data-location="contacts"
           href="https://book.bnbdimoraorru.it/booking.php?propid=312937&amp;lang=it"
         >Prenota</a>
-        <a class="btn ghost" href="https://wa.me/393492166046" rel="noopener">Scrivici su WhatsApp</a>
-      </div>
+</div>
     </div>
   </section>
 </main>
@@ -495,6 +507,72 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="fineprint">CIN IT095018B4000F4668 · IUN F4668 · Cabras (OR)</div>
   </div>
 </footer>
+
+<!-- Sticky header + mobile menu UX -->
+<script>
+(function(){
+  var toggle = document.getElementById("nav-toggle");
+  var header = document.querySelector("header");
+  var btn = document.querySelector(".nav-toggle-btn");
+  var box = document.querySelector(".navbox");
+
+  function syncMenu(){
+    if(!toggle) return;
+    document.body.classList.toggle("menu-open", !!toggle.checked);
+    if(btn) btn.setAttribute("aria-expanded", toggle.checked ? "true" : "false");
+  }
+
+  if(btn && toggle){
+    btn.addEventListener("keydown", function(e){
+      if(e.key === "Enter" || e.key === " "){
+        e.preventDefault();
+        toggle.checked = !toggle.checked;
+        syncMenu();
+      }
+    });
+  }
+
+  if(toggle){
+    toggle.addEventListener("change", syncMenu);
+
+    // close after selecting a link
+    var links = document.querySelectorAll("nav a");
+    for (var i=0;i<links.length;i++){
+      links[i].addEventListener("click", function(){
+        toggle.checked = false;
+        syncMenu();
+      });
+    }
+  }
+
+  // close on outside click
+  document.addEventListener("click", function(e){
+    if(!toggle || !toggle.checked) return;
+    if(box && !box.contains(e.target)){
+      toggle.checked = false;
+      syncMenu();
+    }
+  });
+
+  // close on ESC
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && toggle && toggle.checked){
+      toggle.checked = false;
+      syncMenu();
+    }
+  });
+
+  // header shadow on scroll
+  function onScroll(){
+    if(!header) return;
+    header.classList.toggle("scrolled", window.scrollY > 8);
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  syncMenu();
+})();
+</script>
 
 <!-- One listener for all booking CTAs -->
 <script>
