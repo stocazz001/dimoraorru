@@ -178,8 +178,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .brand small{color:var(--muted);font-weight:500}
 
     .main-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:8px}
-    .main-nav a{text-decoration:none;padding:10px 12px;border-radius:10px;color:#243043;font-weight:600}
+    .main-nav a{text-decoration:none;padding:10px 12px;border-radius:10px;color:#243043;font-weight:600;border:1px solid transparent}
     .main-nav a:hover,.main-nav a:focus-visible{background:var(--surface-soft)}
+    .main-nav a[aria-current="page"]{background:#ecf4f3;border-color:var(--border);color:var(--brand);font-weight:700}
 
     .nav-actions{display:flex;align-items:center;gap:10px}
     .cta{display:inline-flex;align-items:center;justify-content:center;padding:10px 15px;border-radius:12px;border:1px solid transparent;background:linear-gradient(135deg,var(--brand),#245c87);color:#fff;font-weight:700;text-decoration:none;box-shadow:0 12px 24px rgba(31,111,104,.26)}
@@ -274,10 +275,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <nav class="main-nav" id="primary-nav" aria-label="Main navigation">
       <ul>
-        <li><a href="#camere">Rooms</a></li>
-        <li><a href="#dove">Location</a></li>
-        <li><a href="#recensioni">Reviews</a></li>
-        <li><a href="#contatti">Contacts</a></li>
+        <li><a href="/en/" aria-current="page">Home</a></li>
+        <li><a href="/en/#camere">Rooms</a></li>
+        <li><a href="/en/#dove">Location</a></li>
+        <li><a href="/en/#recensioni">Reviews</a></li>
+        <li><a href="/en/#contatti">Contacts</a></li>
         <li><a href="/en/location/">Area guide</a></li>
         <li><a href="/en/bb-cabras/">B&amp;B in Cabras</a></li>
       </ul>
@@ -315,7 +317,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             data-location="hero"
             href="https://book.bnbdimoraorru.it/booking.php?propid=312937"
           >Check availability</a>
-          <a class="btn ghost" href="#dove">Open map</a>
           <a class="btn ghost" href="/en/bb-cabras/">Cabras B&amp;B guide</a>
         </div>
       </div>

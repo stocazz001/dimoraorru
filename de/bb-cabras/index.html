@@ -146,8 +146,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   a{color:inherit}
   .container{max-width:var(--max);margin:0 auto;padding:0 20px}
   header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
   .brand{font-weight:700;text-decoration:none}
+  .main-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:8px}
+  .main-nav a{text-decoration:none;padding:9px 10px;border-radius:10px;color:#243043;font-weight:600;border:1px solid transparent}
+  .main-nav a:hover,.main-nav a:focus-visible{background:#f3f7fb}
+  .main-nav a[aria-current="page"]{background:#ecf4f3;border-color:var(--border);color:var(--brand);font-weight:700}
   .nav-actions{display:flex;align-items:center;gap:8px}
   .btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 14px;border-radius:12px;text-decoration:none;font-weight:700;border:1px solid transparent}
   .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff}
@@ -181,6 +185,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   iframe{border:0;width:100%;border-radius:var(--radius)}
   footer{margin-top:20px;padding:22px 0;background:#122430;color:#e8eef6;text-align:center}
   .fineprint{opacity:.95;font-size:.88rem;margin-top:4px}
+  @media(max-width:1080px){.main-nav{display:none}}
   @media(max-width:940px){.grid,.split{grid-template-columns:1fr}.hero h1{font-size:1.7rem}}
   @media(max-width:560px){.container{padding:0 14px}.hero-actions .btn{width:100%}.btn.primary{padding:9px 11px}.lang-btn{padding:8px 9px}}
 </style>
@@ -193,6 +198,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <header>
   <div class="container header-inner">
     <a class="brand" href="/de/">B&amp;B Dimora Orrù</a>
+    <nav class="main-nav" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="/de/">Startseite</a></li>
+        <li><a href="/de/#camere">Zimmer</a></li>
+        <li><a href="/de/#dove">Lage</a></li>
+        <li><a href="/de/#recensioni">Bewertungen</a></li>
+        <li><a href="/de/#contatti">Kontakt</a></li>
+        <li><a href="/de/umgebung/">Umgebung</a></li>
+        <li><a href="/de/bb-cabras/" aria-current="page">B&amp;B in Cabras</a></li>
+      </ul>
+    </nav>
     <div class="nav-actions">
       <a class="btn primary" href="https://book.bnbdimoraorru.it/booking.php?propid=312937">Buchen</a>
       <details class="lang-dd">
