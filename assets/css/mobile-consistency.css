@@ -1,0 +1,54 @@
+/* Shared mobile/tablet layout overrides to keep all pages visually consistent. */
+@media (max-width: 1024px) {
+  .main-nav {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 14px !important;
+  }
+
+  header .header-inner {
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    padding: 9px 0 !important;
+  }
+
+  header .brand {
+    font-size: 0.98rem;
+    line-height: 1.2;
+  }
+
+  header .brand small {
+    display: none;
+  }
+
+  header .nav-actions {
+    margin-left: auto;
+    gap: 8px !important;
+  }
+
+  header .btn.primary,
+  header .cta,
+  header .cta-standalone {
+    padding: 9px 11px !important;
+    white-space: nowrap;
+  }
+
+  header .lang-btn {
+    padding: 8px 9px !important;
+  }
+
+  header .lang-menu {
+    right: 0;
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-actions .btn {
+    width: 100%;
+  }
+}
