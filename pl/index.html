@@ -219,6 +219,13 @@
     .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     iframe{border:0;border-radius:var(--radius);width:100%}
     .info{padding:18px}
+    .contact-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(180px,220px);gap:18px;align-items:center}
+    .contact-copy{min-width:0}
+    .contact-card{justify-self:end;width:100%;max-width:220px;padding:18px 16px 16px;border:1px solid rgba(17,24,39,.08);border-radius:20px;background:linear-gradient(180deg,#fff,#f7fafc);box-shadow:0 14px 30px rgba(15,23,42,.08);text-align:center}
+    .contact-avatar-wrap{position:relative;width:112px;margin:0 auto 14px}
+    .contact-avatar{display:block;width:112px;height:112px;object-fit:cover;border-radius:50%;box-shadow:0 10px 20px rgba(15,23,42,.12)}
+    .contact-badge{position:absolute;right:-2px;bottom:-2px;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;border:4px solid #fff;background:linear-gradient(135deg,#ff4f93,#d61d6c);box-shadow:0 10px 18px rgba(214,29,108,.28);color:#fff;font-size:1rem;font-weight:800}
+    .contact-name{margin:0;font-size:1.75rem;line-height:1.05;letter-spacing:-.03em;font-weight:400;color:var(--text)}
     .info a{color:var(--brand);font-weight:700;text-decoration:none}
     .info a:hover{text-decoration:underline}
 
@@ -243,9 +250,10 @@
       .cta{padding:8px 11px;font-size:.84rem;border-radius:10px;box-shadow:none}
       .lang-btn{padding:8px 9px;font-size:.82rem;border-radius:10px}
       .lang-menu{min-width:170px}
-      .hero-grid,.cards,.split{grid-template-columns:1fr}
+      .hero-grid,.cards,.split,.contact-layout{grid-template-columns:1fr}
       .hero-copy h2{font-size:1.7rem}
       .hero-img{min-height:220px}
+      .contact-card{justify-self:start}
     }
 
     @media (max-width: 560px){
@@ -256,6 +264,7 @@
       .cta{padding:7px 10px;font-size:.8rem}
       .lang-btn{padding:7px 8px;font-size:.78rem}
       .hero-actions .btn{width:100%}
+      .contact-card{justify-self:center}
     }
 
     a:focus-visible,button:focus-visible{outline:3px solid rgba(31,111,104,.3);outline-offset:2px}
@@ -458,22 +467,33 @@
   <section id="contatti">
     <h3 class="section-title">Kontakt</h3>
     <div class="info">
-      <p><strong>Adres:</strong> Via Giovanni Battista Tuveri 15, 09072 Cabras (OR)</p>
-      <p><strong>Telefon:</strong> <a href="tel:+393492166046">+39 349 216 6046</a></p>
+      <div class="contact-layout">
+        <div class="contact-copy">
+          <p><strong>Adres:</strong> Via Giovanni Battista Tuveri 15, 09072 Cabras (OR)</p>
+          <p><strong>Telefon:</strong> <a href="tel:+393492166046">+39 349 216 6046</a></p>
 
-      <p class="fineprint">
-        <span>Uwaga: podatek turystyczny w Cabras nie jest wliczony; wynosi 2€ za noc za każdego gościa powyżej 12. roku życia i jest płatny na miejscu.</span>
-      </p>
-      <div class="hero-actions">
-        <a class="btn whatsapp" href="https://wa.me/393492166046" rel="noopener" target="_blank">💬 WhatsApp</a>
-        <a
-          class="btn primary js-booking-link"
-          data-cta="contacts_prenota"
-          data-location="contacts"
-          href="https://book.bnbdimoraorru.it/booking.php?propid=312937"
-        >Rezerwuj</a>
-        <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Giovanni%20Battista%20Tuveri%2015%2C%2009072%20Cabras%20OR" rel="noopener" target="_blank">Wskazówki</a>
-</div>
+          <p class="fineprint">
+            <span>Uwaga: podatek turystyczny w Cabras nie jest wliczony; wynosi 2€ za noc za każdego gościa powyżej 12. roku życia i jest płatny na miejscu.</span>
+          </p>
+          <div class="hero-actions">
+            <a class="btn whatsapp" href="https://wa.me/393492166046" rel="noopener" target="_blank">💬 WhatsApp</a>
+            <a
+              class="btn primary js-booking-link"
+              data-cta="contacts_prenota"
+              data-location="contacts"
+              href="https://book.bnbdimoraorru.it/booking.php?propid=312937"
+            >Rezerwuj</a>
+            <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20Giovanni%20Battista%20Tuveri%2015%2C%2009072%20Cabras%20OR" rel="noopener" target="_blank">Wskazówki</a>
+          </div>
+        </div>
+        <aside class="contact-card" aria-label="Vincenza">
+          <div class="contact-avatar-wrap">
+            <img class="contact-avatar" src="../assets/images/contacts/vincenza.jpg" alt="Vincenza" width="112" height="112" loading="eager"/>
+            <span class="contact-badge" aria-hidden="true">&#10003;</span>
+          </div>
+          <p class="contact-name">Vincenza</p>
+        </aside>
+      </div>
     </div>
   </section>
 </main>
