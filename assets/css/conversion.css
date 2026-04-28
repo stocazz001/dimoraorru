@@ -1,0 +1,147 @@
+.trust-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+  gap: 18px;
+  align-items: stretch;
+  padding: 22px;
+  background: #fff;
+  border: 1px solid rgba(17, 24, 39, 0.1);
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09);
+}
+
+.trust-copy h3,
+.trust-copy h2 {
+  margin: 0 0 8px;
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+
+.trust-copy p {
+  margin: 0 0 14px;
+  color: #5b6678;
+}
+
+.trust-list {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.trust-list li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  color: #344256;
+}
+
+.trust-list li::before {
+  content: "";
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  margin-top: 0.62em;
+  border-radius: 999px;
+  background: #1f6f68;
+}
+
+.review-proof {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  align-content: start;
+}
+
+.review-proof img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(17, 24, 39, 0.1);
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.review-link {
+  grid-column: 1 / -1;
+  color: #1f6f68;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.review-link:hover {
+  text-decoration: underline;
+}
+
+.btn.whatsapp {
+  background: #e9f9ef;
+  border-color: #24d366;
+  color: #137a39;
+}
+
+.booking-confidence {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+  gap: 16px;
+  align-items: center;
+  padding: 18px;
+  background: #fff;
+  border: 1px solid rgba(17, 24, 39, 0.1);
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09);
+}
+
+.booking-confidence__media {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.booking-confidence__media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.booking-confidence__copy h2,
+.booking-confidence__copy h3 {
+  margin: 0 0 8px;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.booking-confidence__copy p {
+  margin: 0 0 12px;
+  color: #5b6678;
+}
+
+.quick-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 860px) {
+  .trust-panel,
+  .booking-confidence {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .trust-panel,
+  .booking-confidence {
+    padding: 16px;
+  }
+
+  .review-proof {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-contact .btn {
+    width: 100%;
+  }
+}
