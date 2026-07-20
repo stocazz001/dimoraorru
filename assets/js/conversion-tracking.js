@@ -65,7 +65,7 @@
   function pushEvent(anchor, kind, callback) {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-      event: "conversion_intent_click",
+      event: kind === "booking" ? "landing_booking_click" : "conversion_intent_click",
       intent_type: kind,
       cta_id: anchor.dataset.cta || "",
       cta_location: anchor.dataset.location || "",

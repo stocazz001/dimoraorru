@@ -1,7 +1,31 @@
 (function () {
-  var GTM_ID = "GTM-5QJSHX9K";
+  var GA_MEASUREMENT_ID = "G-MWMGZXJYGZ";
   var STORAGE_KEY = "bnbConsent";
-  var loadedGtm = false;
+  var COOKIE_MAX_AGE = 60 * 60 * 24 * 180;
+  var loadedGa4 = false;
+  var analyticsAllowed = false;
+  var TRACKED_EVENT_PARAMETERS = {
+    landing_booking_click: [
+      "intent_type",
+      "cta_id",
+      "cta_location",
+      "room",
+      "room_id",
+      "cta_text",
+      "link_url",
+      "page_language"
+    ],
+    conversion_intent_click: [
+      "intent_type",
+      "cta_id",
+      "cta_location",
+      "room",
+      "room_id",
+      "cta_text",
+      "link_url",
+      "page_language"
+    ]
+  };
   var lang = (document.documentElement.lang || "en").toLowerCase().slice(0, 2);
 
   var copy = {
@@ -157,21 +181,107 @@
     return value && typeof value === "object";
   }
 
-  function readConsent() {
+  function parseConsent(saved) {
     try {
-      var saved = localStorage.getItem(STORAGE_KEY);
-      if (!saved) return null;
       var parsed = JSON.parse(saved);
       if (!isObject(parsed)) return null;
       return {
-        analytics: parsed.analytics === true
+        analytics: parsed.analytics === true,
+        savedAt: typeof parsed.savedAt === "string" ? parsed.savedAt : ""
       };
     } catch (error) {
       return null;
     }
   }
 
+  function readConsentCookie() {
+    try {
+      var parts = document.cookie ? document.cookie.split(";") : [];
+      for (var index = 0; index < parts.length; index += 1) {
+        var part = parts[index].trim();
+        var prefix = STORAGE_KEY + "=";
+        if (part.indexOf(prefix) === 0) {
+          return parseConsent(decodeURIComponent(part.slice(prefix.length)));
+        }
+      }
+    } catch (error) {
+      /* ignore cookie errors */
+    }
+    return null;
+  }
+
+  function writeConsentCookie(value) {
+    try {
+      var savedAt = value.savedAt || new Date().toISOString();
+      var savedAtTime = Date.parse(savedAt);
+      var elapsed = Number.isNaN(savedAtTime)
+        ? 0
+        : Math.max(0, Math.floor((Date.now() - savedAtTime) / 1000));
+      var maxAge = Math.max(0, COOKIE_MAX_AGE - elapsed);
+      if (maxAge === 0) return false;
+      var serialized = encodeURIComponent(
+        JSON.stringify({
+          analytics: value.analytics === true,
+          savedAt: savedAt
+        })
+      );
+      document.cookie =
+        STORAGE_KEY +
+        "=" +
+        serialized +
+        "; Max-Age=" +
+        maxAge +
+        "; Domain=bnbdimoraorru.it; Path=/; SameSite=Lax; Secure";
+      var saved = readConsentCookie();
+      return saved && saved.analytics === (value.analytics === true);
+    } catch (error) {
+      /* ignore cookie errors */
+    }
+    return false;
+  }
+
+  function removeLegacyConsent() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (error) {
+      /* ignore storage errors */
+    }
+  }
+
+  function readConsent() {
+    var cookieConsent = readConsentCookie();
+    if (cookieConsent) {
+      removeLegacyConsent();
+      return cookieConsent;
+    }
+
+    try {
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) return null;
+      var parsed = parseConsent(saved);
+      if (!parsed) return null;
+      if (parsed.savedAt) {
+        var savedAtTime = Date.parse(parsed.savedAt);
+        if (
+          !Number.isNaN(savedAtTime) &&
+          Date.now() - savedAtTime >= COOKIE_MAX_AGE * 1000
+        ) {
+          removeLegacyConsent();
+          return null;
+        }
+      }
+      if (writeConsentCookie(parsed)) removeLegacyConsent();
+      return parsed;
+    } catch (error) {
+      return null;
+    }
+  }
+
   function writeConsent(value) {
+    if (writeConsentCookie(value)) {
+      removeLegacyConsent();
+      return;
+    }
     try {
       localStorage.setItem(
         STORAGE_KEY,
@@ -189,18 +299,111 @@
     return readConsent() || { analytics: false };
   }
 
-  function loadGtm() {
-    if (loadedGtm) return;
-    loadedGtm = true;
+  function isProductionHost() {
+    var hostname = (window.location.hostname || "").toLowerCase();
+    return (
+      hostname === "bnbdimoraorru.it" ||
+      hostname.slice(-".bnbdimoraorru.it".length) === ".bnbdimoraorru.it"
+    );
+  }
+
+  function consentState(granted) {
+    return {
+      analytics_storage: granted ? "granted" : "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied"
+    };
+  }
+
+  function runEventCallback(item) {
+    if (typeof item.eventCallback === "function") {
+      window.setTimeout(item.eventCallback, 0);
+    }
+  }
+
+  function installDataLayerBridge() {
+    window.dataLayer = window.dataLayer || [];
+    if (window.dataLayer.bnbDirectGa4Bridge) return;
+
+    var originalPush = window.dataLayer.push.bind(window.dataLayer);
+    window.dataLayer.push = function () {
+      var result = window.dataLayer.length;
+      for (var index = 0; index < arguments.length; index += 1) {
+        var item = arguments[index];
+        var allowedParameters =
+          isObject(item) && typeof item.event === "string"
+            ? TRACKED_EVENT_PARAMETERS[item.event]
+            : null;
+        if (allowedParameters) {
+          if (!analyticsAllowed) {
+            runEventCallback(item);
+            continue;
+          }
+
+          var parameters = {
+            send_to: GA_MEASUREMENT_ID
+          };
+          allowedParameters.forEach(function (key) {
+            if (Object.prototype.hasOwnProperty.call(item, key)) {
+              parameters[key] = item[key];
+            }
+          });
+          if (item.event === "landing_booking_click" && !parameters.intent_type) {
+            parameters.intent_type = "booking";
+          }
+          if (!parameters.page_language) {
+            parameters.page_language = (document.documentElement.lang || "").toLowerCase();
+          }
+          if (typeof item.eventCallback === "function") {
+            parameters.event_callback = item.eventCallback;
+          }
+          window.gtag("event", item.event, parameters);
+          result = window.dataLayer.length;
+          continue;
+        }
+        result = originalPush(item);
+      }
+      return result;
+    };
+    window.dataLayer.bnbDirectGa4Bridge = true;
+  }
+
+  function initializeConsentMode() {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag =
+      window.gtag ||
+      function () {
+        window.dataLayer.push(arguments);
+      };
+    installDataLayerBridge();
+    window.gtag("consent", "default", consentState(false));
+  }
+
+  function loadGa4() {
+    if (loadedGa4) return;
+    loadedGa4 = true;
+
+    window.gtag("js", new Date());
+    window.gtag("config", GA_MEASUREMENT_ID, {
+      allow_ad_personalization_signals: false,
+      allow_google_signals: false,
+      cookie_domain: "bnbdimoraorru.it",
+      cookie_flags: "SameSite=Lax;Secure"
+    });
+
     var script = document.createElement("script");
     script.async = true;
-    script.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM_ID;
+    script.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_MEASUREMENT_ID;
     document.head.appendChild(script);
   }
 
   function applyConsent() {
     var consent = getConsent();
-    if (consent.analytics) loadGtm();
+    analyticsAllowed = consent.analytics && isProductionHost();
+    window["ga-disable-" + GA_MEASUREMENT_ID] = !analyticsAllowed;
+    window.gtag("consent", "update", consentState(analyticsAllowed));
+    if (analyticsAllowed) loadGa4();
   }
 
   function consentPaths() {
@@ -348,6 +551,8 @@
     var banner = document.getElementById("consent-banner");
     if (banner) banner.remove();
   }
+
+  initializeConsentMode();
 
   document.addEventListener("DOMContentLoaded", function () {
     injectFooterLinks();
