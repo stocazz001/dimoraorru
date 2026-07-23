@@ -35,13 +35,14 @@
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#205b63">
   <link rel="preload" as="image" href="/assets/images/design6/entrance-door.jpg" fetchpriority="high">
-  <link rel="stylesheet" href="/assets/design6.css?v=20260723">
+  <link rel="stylesheet" href="/assets/design6.css?v=20260723a">
   <link rel="stylesheet" href="/assets/css/site-consent.css?v=20260720">
 
   <script>window.dataLayer = window.dataLayer || [];</script>
   <script defer src="/assets/js/site-consent.js?v=20260720"></script>
   <script defer src="/assets/js/conversion-tracking.js?v=20260720"></script>
   <script defer src="/assets/js/design6-form.js?v=20260723"></script>
+  <script defer src="/assets/js/design6-availability.js?v=20260723a"></script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -416,6 +417,28 @@
           <p>Välj datum: Bokningssystemet bekräftar tillgänglighet, villkor och priset för boendet. Eventuell turistskatt i Cabras visas separat före bekräftelsen.</p>
         </div>
         <div class="d6-booking-panel">
+          <div
+            data-availability-calendar
+            data-language="sv"
+            data-label-room="Boende"
+            data-title="Tillgänglighet per natt"
+            data-hint="Välj först ankomst och därefter avresa i samma kalender."
+            data-available="Ledig natt"
+            data-unavailable="Ej tillgänglig natt"
+            data-loading="Läser in tillgänglighet…"
+            data-error="Det går inte att visa tillgängligheten just nu."
+            data-show-manual="Ange datum manuellt"
+            data-hide-manual="Dölj manuell datuminmatning"
+            data-arrival="Ankomst"
+            data-departure="Avresa"
+            data-adults="Vuxna"
+            data-children="Barn"
+            data-submit="Kontrollera tillgänglighet"
+            data-dates-required="Välj först ankomst och avresa."
+            data-prev-month="Föregående månad"
+            data-next-month="Nästa månad"
+            data-guide="Färgerna är endast vägledande för enskilda nätter. Beds24 bekräftar tillgängligheten för hela vistelsen, eventuella bokningsbegränsningar och priset."
+          ></div>
           <form action="https://book.bnbdimoraorru.it/booking.php" method="get" class="d6-booking-grid" data-booking-form data-cta="final_search" data-location="booking_form" aria-describedby="booking-note">
             <input type="hidden" name="propid" value="312937">
             <input type="hidden" name="lang" value="en">

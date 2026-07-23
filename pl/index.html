@@ -35,13 +35,14 @@
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#205b63">
   <link rel="preload" as="image" href="/assets/images/design6/entrance-door.jpg" fetchpriority="high">
-  <link rel="stylesheet" href="/assets/design6.css?v=20260723">
+  <link rel="stylesheet" href="/assets/design6.css?v=20260723a">
   <link rel="stylesheet" href="/assets/css/site-consent.css?v=20260720">
 
   <script>window.dataLayer = window.dataLayer || [];</script>
   <script defer src="/assets/js/site-consent.js?v=20260720"></script>
   <script defer src="/assets/js/conversion-tracking.js?v=20260720"></script>
   <script defer src="/assets/js/design6-form.js?v=20260723"></script>
+  <script defer src="/assets/js/design6-availability.js?v=20260723a"></script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -416,6 +417,28 @@
           <p>Wybierz terminy: system rezerwacji potwierdzi dostępność, warunki i cenę zakwaterowania. Ewentualna opłata turystyczna w Cabras zostanie wskazana osobno przed potwierdzeniem.</p>
         </div>
         <div class="d6-booking-panel">
+          <div
+            data-availability-calendar
+            data-language="pl"
+            data-label-room="Wariant zakwaterowania"
+            data-title="Dostępność poszczególnych nocy"
+            data-hint="Najpierw wybierz przyjazd, a następnie wyjazd w tym samym kalendarzu."
+            data-available="Dostępna noc"
+            data-unavailable="Niedostępna noc"
+            data-loading="Ładowanie dostępności…"
+            data-error="Nie można teraz sprawdzić dostępności."
+            data-show-manual="Wpisz daty ręcznie"
+            data-hide-manual="Ukryj ręczne wpisywanie dat"
+            data-arrival="Przyjazd"
+            data-departure="Wyjazd"
+            data-adults="Dorośli"
+            data-children="Dzieci"
+            data-submit="Sprawdź dostępność"
+            data-dates-required="Najpierw wybierz datę przyjazdu i wyjazdu."
+            data-prev-month="Poprzedni miesiąc"
+            data-next-month="Następny miesiąc"
+            data-guide="Kolory mają charakter orientacyjny i odnoszą się do poszczególnych nocy. Beds24 potwierdza dostępność całego pobytu, ewentualne ograniczenia i cenę."
+          ></div>
           <form action="https://book.bnbdimoraorru.it/booking.php" method="get" class="d6-booking-grid" data-booking-form data-cta="final_search" data-location="booking_form" aria-describedby="booking-note">
             <input type="hidden" name="propid" value="312937">
             <input type="hidden" name="lang" value="en">

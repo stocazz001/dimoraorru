@@ -913,6 +913,549 @@
   text-underline-offset: 3px;
 }
 
+/* Beds24 availability calendar.
+ *
+ * The data attributes are the production hooks. The beds24-range-trial class
+ * names keep the visual contract aligned with the approved local prototype.
+ * Nothing in this block hides the existing manual booking form unless its
+ * controller sets the native [hidden] attribute.
+ */
+
+.d6-page [data-availability-calendar] {
+  display: grid;
+  min-width: 0;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 18px;
+  border: 1px solid rgb(32 91 99 / 18%);
+  border-radius: 18px;
+  background: rgb(255 253 248 / 64%);
+}
+
+.d6-page [data-availability-calendar] .beds24-range-trial {
+  display: grid;
+  min-width: 0;
+  gap: 12px;
+}
+
+.d6-page [data-availability-calendar][hidden],
+.d6-page [data-availability-calendar] [hidden] {
+  display: none !important;
+}
+
+.d6-page
+  :is(
+    [data-availability-header],
+    .beds24-range-trial__topline
+  ) {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(170px, 0.58fr) minmax(0, 1.42fr);
+  gap: 14px;
+  align-items: end;
+}
+
+.d6-page
+  :is(
+    [data-availability-room-picker],
+    .beds24-range-trial__room-picker
+  ) {
+  display: grid;
+  min-width: 0;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.d6-page
+  :is(
+    [data-availability-room-picker],
+    .beds24-range-trial__room-picker
+  )
+  legend {
+  padding: 0;
+  color: var(--d6-muted);
+  font-size: 0.68rem;
+  font-weight: 550;
+}
+
+.d6-page
+  :is(
+    [data-availability-room-tabs],
+    .beds24-range-trial__room-tabs
+  ) {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.d6-page
+  :is(
+    [data-availability-room-tabs],
+    .beds24-range-trial__room-tabs
+  )
+  button {
+  display: grid;
+  min-width: 0;
+  min-height: 46px;
+  align-content: center;
+  padding: 8px 11px;
+  border: 1px solid rgb(32 91 99 / 26%);
+  border-radius: 12px;
+  background: var(--d6-chalk);
+  color: var(--d6-ink);
+  cursor: pointer;
+  font-family: var(--d6-sans);
+  text-align: left;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.d6-page
+  :is(
+    [data-availability-room-tabs],
+    .beds24-range-trial__room-tabs
+  )
+  button:hover {
+  border-color: var(--d6-door-dark);
+  background: #edf4f2;
+}
+
+.d6-page
+  :is(
+    [data-availability-room-tabs],
+    .beds24-range-trial__room-tabs
+  )
+  button
+  strong {
+  overflow: hidden;
+  font-size: 0.78rem;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.d6-page
+  :is(
+    [data-availability-room-tabs],
+    .beds24-range-trial__room-tabs
+  )
+  button[aria-pressed="true"] {
+  border-color: var(--d6-door-dark);
+  background: #dcebea;
+  box-shadow: inset 0 0 0 1px rgb(32 91 99 / 24%);
+}
+
+.d6-page
+  :is(
+    [data-availability-room-tabs],
+    .beds24-range-trial__room-tabs
+  )
+  button:focus-visible {
+  outline: 3px solid #e3a93f;
+  outline-offset: 2px;
+}
+
+.d6-page
+  :is(
+    [data-availability-hint],
+    .beds24-range-trial__topline p
+  ) {
+  margin: 0;
+  color: var(--d6-muted);
+  font-size: 0.7rem;
+  line-height: 1.55;
+}
+
+.d6-page
+  :is(
+    [data-availability-legend],
+    .beds24-range-trial__legend
+  ) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  color: var(--d6-muted);
+  font-size: 0.66rem;
+}
+
+.d6-page
+  :is(
+    [data-availability-legend],
+    .beds24-range-trial__legend
+  )
+  span {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.d6-page
+  :is(
+    [data-availability-legend],
+    .beds24-range-trial__legend
+  )
+  i {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 13px;
+  border: 1px solid rgb(36 54 56 / 16%);
+  border-radius: 4px;
+}
+
+.d6-page
+  :is(
+    [data-availability-legend],
+    .beds24-range-trial__legend
+  )
+  :is(.is-available, [data-state="available"]) {
+  background: #cfe9e3;
+}
+
+.d6-page
+  :is(
+    [data-availability-legend],
+    .beds24-range-trial__legend
+  )
+  :is(.is-unavailable, [data-state="unavailable"]) {
+  background:
+    linear-gradient(
+      135deg,
+      transparent 44%,
+      rgb(95 108 105 / 30%) 45%,
+      rgb(95 108 105 / 30%) 55%,
+      transparent 56%
+    ),
+    #ece7df;
+}
+
+.d6-page [data-availability-calendar] :is(.book-widget, .book-widget *) {
+  font-family: var(--d6-sans) !important;
+}
+
+.d6-page
+  [data-availability-calendar]
+  :is(.book-widget-size, .book-widget-booking-box-size, .book-widget-size-all) {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.d6-page [data-availability-calendar] .book-widget-bg {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.d6-page [data-availability-calendar] .beds24-range-trial__host {
+  min-width: 0;
+}
+
+.d6-page [data-availability-calendar] .book-form-horizontal {
+  display: grid !important;
+  min-width: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.d6-page [data-availability-calendar] .book-form-title {
+  grid-column: 1 / -1;
+  margin: 0 !important;
+  color: var(--d6-ink) !important;
+  font: 600 0.9rem/1.3 var(--d6-sans) !important;
+  text-align: left !important;
+}
+
+.d6-page [data-availability-calendar] .book-form-group {
+  display: grid !important;
+  min-width: 0;
+  gap: 7px;
+  margin: 0 !important;
+}
+
+.d6-page [data-availability-calendar] .book-form-group:has(.book-btn) {
+  grid-column: 1 / -1;
+}
+
+.d6-page
+  [data-availability-calendar]
+  :is(.book-col-5, .book-col-7, .book-col-12, .book-col-offset-5) {
+  position: relative !important;
+  float: none !important;
+  width: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.d6-page [data-availability-calendar] .book-control-label {
+  color: var(--d6-muted) !important;
+  font: 550 0.68rem/1.2 var(--d6-sans) !important;
+  text-align: left !important;
+}
+
+.d6-page
+  [data-availability-calendar]
+  :is(.book-form-control, .book-btn) {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 47px !important;
+  padding: 0 13px !important;
+  border: 1px solid rgb(32 91 99 / 28%) !important;
+  border-radius: 12px !important;
+  outline: none !important;
+  background: rgb(255 253 248 / 90%) !important;
+  color: var(--d6-ink) !important;
+  font: 500 0.78rem/1 var(--d6-sans) !important;
+  box-shadow: none !important;
+}
+
+.d6-page
+  [data-availability-calendar]
+  :is(.book-form-control, .book-btn):focus-visible {
+  border-color: var(--d6-door-dark) !important;
+  outline: 3px solid #e3a93f !important;
+  outline-offset: 2px !important;
+}
+
+.d6-page [data-availability-calendar] .book-btn {
+  border-color: var(--d6-door-dark) !important;
+  background: var(--d6-door-dark) !important;
+  color: #fff !important;
+  cursor: pointer;
+  font-weight: 650 !important;
+}
+
+.d6-page [data-availability-calendar] .book-btn:hover {
+  background: var(--d6-door-deep) !important;
+}
+
+.d6-page [data-availability-calendar] .icon-book-calendar {
+  right: 12px !important;
+}
+
+.d6-page
+  :is(
+    [data-availability-status],
+    .beds24-range-trial__status
+  ) {
+  display: flex;
+  min-height: 22px;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  color: var(--d6-muted);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+.d6-page
+  :is(
+    [data-availability-status]:not([data-state="error"]),
+    .beds24-range-trial__status:not(.is-error, .is-validation),
+    [data-availability-status][data-state="loading"],
+    .beds24-range-trial__status.is-loading
+  )::before {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 13px;
+  border: 2px solid rgb(32 91 99 / 20%);
+  border-top-color: var(--d6-door-dark);
+  border-radius: 50%;
+  animation: d6-calendar-spin 800ms linear infinite;
+  content: "";
+}
+
+.d6-page
+  :is(
+    [data-availability-status][data-state="error"],
+    .beds24-range-trial__status.is-error
+  ) {
+  padding: 10px 12px;
+  border: 1px solid rgb(138 63 50 / 24%);
+  border-radius: 11px;
+  background: #f8ebe7;
+  color: #77382d;
+}
+
+.d6-page .beds24-range-trial__status.is-validation {
+  min-height: 0;
+  padding: 8px 11px;
+  border: 1px solid rgb(138 63 50 / 20%);
+  border-radius: 10px;
+  background: #fbf1ed;
+  color: #77382d;
+}
+
+.d6-page .beds24-range-trial__guide {
+  margin: 0;
+  padding-top: 2px;
+  color: var(--d6-muted);
+  font-size: 0.66rem;
+  line-height: 1.55;
+}
+
+.d6-page
+  :is(
+    [data-manual-toggle],
+    .booking-handoff__manual-toggle
+  ) {
+  display: inline-flex;
+  min-height: 42px;
+  gap: 7px;
+  align-items: center;
+  justify-self: start;
+  margin: 2px 0 0;
+  padding: 0 12px;
+  border: 1px solid rgb(32 91 99 / 25%);
+  border-radius: 11px;
+  background: rgb(255 253 248 / 72%);
+  color: var(--d6-door-dark);
+  cursor: pointer;
+  font: 600 0.7rem/1.3 var(--d6-sans);
+  text-decoration: none;
+}
+
+.d6-page
+  :is(
+    [data-manual-toggle],
+    .booking-handoff__manual-toggle
+  ):hover {
+  border-color: var(--d6-door-dark);
+  background: var(--d6-chalk);
+}
+
+.d6-page
+  :is(
+    [data-manual-toggle],
+    .booking-handoff__manual-toggle
+  ):focus-visible {
+  outline: 3px solid #e3a93f;
+  outline-offset: 2px;
+}
+
+.d6-page
+  :is(
+    [data-manual-toggle],
+    .booking-handoff__manual-toggle
+  )
+  + :is([data-manual-form], .d6-booking-grid) {
+  margin-top: 12px;
+}
+
+@keyframes d6-calendar-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+/* The widget appends jQuery UI's popup directly to <body>. */
+
+body.d6-page .ui-datepicker {
+  z-index: 1200 !important;
+  width: min(360px, calc(100vw - 28px)) !important;
+  max-width: calc(100vw - 28px) !important;
+  padding: 11px !important;
+  border: 1px solid var(--d6-line) !important;
+  border-radius: 16px !important;
+  background: var(--d6-chalk) !important;
+  color: var(--d6-ink) !important;
+  box-shadow: 0 22px 60px rgb(36 54 56 / 20%) !important;
+  font-family: var(--d6-sans) !important;
+}
+
+body.d6-page .ui-datepicker .ui-datepicker-header {
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--d6-ink) !important;
+}
+
+body.d6-page .ui-datepicker :is(.ui-datepicker-prev, .ui-datepicker-next) {
+  min-width: 40px;
+  min-height: 40px;
+  border: 0 !important;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+body.d6-page
+  .ui-datepicker
+  :is(.ui-datepicker-prev, .ui-datepicker-next):hover {
+  background: #e8f1ef !important;
+}
+
+body.d6-page
+  .ui-datepicker
+  :is(.ui-datepicker-prev, .ui-datepicker-next):focus-visible {
+  outline: 3px solid #e3a93f;
+  outline-offset: 1px;
+}
+
+body.d6-page .ui-datepicker table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+body.d6-page .ui-datepicker th {
+  padding-block: 8px !important;
+  color: var(--d6-muted);
+  font-size: 0.68rem;
+}
+
+body.d6-page .ui-datepicker td {
+  padding: 2px !important;
+}
+
+body.d6-page .ui-datepicker td :is(a, span) {
+  display: grid !important;
+  min-height: 40px;
+  place-items: center;
+  border: 0 !important;
+  border-radius: 9px;
+  color: var(--d6-ink) !important;
+  text-align: center !important;
+}
+
+body.d6-page
+  .ui-datepicker
+  td:not(.ui-datepicker-unselectable, .ui-state-disabled)
+  a {
+  background: #cfe9e3 !important;
+}
+
+body.d6-page
+  .ui-datepicker
+  td:is(.ui-datepicker-unselectable, .ui-state-disabled)
+  span {
+  background:
+    linear-gradient(
+      135deg,
+      transparent 44%,
+      rgb(95 108 105 / 24%) 45%,
+      rgb(95 108 105 / 24%) 55%,
+      transparent 56%
+    ),
+    #ece7df !important;
+  color: #746f68 !important;
+}
+
+body.d6-page .ui-datepicker td a:hover,
+body.d6-page .ui-datepicker td a:focus-visible {
+  outline: 2px solid var(--d6-door-dark) !important;
+  outline-offset: -2px;
+}
+
+body.d6-page
+  .ui-datepicker
+  :is(.ui-state-active, .ui-datepicker-current-day .ui-state-default) {
+  background: var(--d6-door-dark) !important;
+  color: #fff !important;
+}
+
 /* Footer */
 
 .d6-page .compact-footer {
@@ -1280,6 +1823,20 @@
     height: 105px;
   }
 
+  .d6-page
+    :is(
+      [data-availability-header],
+      .beds24-range-trial__topline
+    ),
+  .d6-page [data-availability-calendar] .book-form-horizontal {
+    grid-template-columns: 1fr !important;
+  }
+
+  .d6-page [data-availability-calendar] .book-form-title,
+  .d6-page [data-availability-calendar] .book-form-group:has(.book-btn) {
+    grid-column: auto;
+  }
+
   .d6-page .d6-booking-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1292,6 +1849,14 @@
   .d6-page .d6-booking-meta a {
     width: 100%;
     margin-left: 0;
+  }
+
+  body.d6-page .ui-datepicker {
+    right: max(14px, env(safe-area-inset-right)) !important;
+    left: max(14px, env(safe-area-inset-left)) !important;
+    width: auto !important;
+    max-width: none !important;
+    transform: none !important;
   }
 }
 
@@ -1315,6 +1880,30 @@
 
   .d6-page .blend-hero__media {
     min-height: 350px;
+  }
+
+  .d6-page [data-availability-calendar] {
+    gap: 11px;
+    padding: 13px;
+    border-radius: 15px;
+  }
+
+  .d6-page
+    :is(
+      [data-availability-room-tabs],
+      .beds24-range-trial__room-tabs
+    )
+    button {
+    padding-inline: 9px;
+  }
+
+  .d6-page
+    :is(
+      [data-manual-toggle],
+      .booking-handoff__manual-toggle
+    ) {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -1348,7 +1937,17 @@
   .d6-page .blend-choice__handoff,
   .d6-page .blend-room-card,
   .d6-page .compact-practical,
-  .d6-page .compact-final {
+  .d6-page .compact-final,
+  .d6-page [data-availability-calendar] {
     border: 1px solid CanvasText;
+  }
+
+  .d6-page
+    :is(
+      [data-availability-room-tabs],
+      .beds24-range-trial__room-tabs
+    )
+    button[aria-pressed="true"] {
+    outline: 2px solid Highlight;
   }
 }
