@@ -305,6 +305,11 @@
   }
 }
 
+#location,
+#contact {
+  scroll-margin-top: 88px;
+}
+
 @media (max-width: 860px) {
   .trust-panel,
   .booking-confidence {
