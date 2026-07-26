@@ -10,6 +10,68 @@
     sv: { booking: "Kontrollera tillgänglighet", call: "Ring", label: "Boka direkt" }
   };
 
+  function setMobileBookingBarVisibility(bar, controls, isVisible) {
+    document.body.classList.toggle("booking-bar-visible", isVisible);
+    bar.setAttribute("aria-hidden", isVisible ? "false" : "true");
+
+    controls.forEach(function (control) {
+      if (isVisible) {
+        control.removeAttribute("tabindex");
+      } else {
+        control.setAttribute("tabindex", "-1");
+      }
+    });
+  }
+
+  function makeMobileBookingBarContextual(bar, controls) {
+    var inlineBookingActions = Array.prototype.slice.call(
+      document.querySelectorAll('main a[href*="book.bnbdimoraorru.it/booking.php"]')
+    );
+    var bookingSection = document.getElementById("booking");
+
+    if (!inlineBookingActions.length || !bookingSection) {
+      document.body.classList.add("booking-bar-visible");
+      return;
+    }
+
+    var mobileViewport = window.matchMedia("(max-width: 760px)");
+    var observedBookingElements = inlineBookingActions.concat(bookingSection);
+
+    bar.classList.add("booking-bar--contextual");
+
+    function isInViewport(element) {
+      var rect = element.getBoundingClientRect();
+      return rect.bottom > 0 && rect.top < window.innerHeight;
+    }
+
+    function updateVisibility() {
+      var inlineBookingIsVisible = observedBookingElements.some(isInViewport);
+      var shouldShow = mobileViewport.matches && !inlineBookingIsVisible;
+      setMobileBookingBarVisibility(bar, controls, shouldShow);
+    }
+
+    updateVisibility();
+
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function () {
+        updateVisibility();
+      });
+
+      observedBookingElements.forEach(function (element) {
+        observer.observe(element);
+      });
+    } else {
+      window.addEventListener("scroll", updateVisibility, { passive: true });
+      window.addEventListener("resize", updateVisibility);
+    }
+
+    if (mobileViewport.addEventListener) {
+      mobileViewport.addEventListener("change", updateVisibility);
+    } else {
+      mobileViewport.addListener(updateVisibility);
+    }
+  }
+
   function addMobileBookingBar() {
     var bookingLink = document.querySelector('a[href*="book.bnbdimoraorru.it/booking.php"]');
     if (!bookingLink || document.querySelector('.booking-bar')) return;
@@ -40,6 +102,7 @@
     bar.appendChild(phone);
     document.body.appendChild(bar);
     document.body.classList.add("booking-bar-present");
+    makeMobileBookingBarContextual(bar, [booking, phone]);
   }
 
   addMobileBookingBar();

@@ -1972,7 +1972,7 @@ body.d6-page
 }
 
 @media (max-width: 760px) {
-  .d6-page.booking-bar-present {
+  .d6-page.booking-bar-visible {
     padding-bottom: calc(82px + env(safe-area-inset-bottom));
   }
 
@@ -1991,6 +1991,25 @@ body.d6-page
     background: rgb(255 253 248 / 96%);
     box-shadow: 0 -10px 30px rgb(36 54 56 / 14%);
     backdrop-filter: blur(14px);
+  }
+
+  .d6-page .booking-bar--contextual {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(100%);
+    transition:
+      opacity 180ms ease,
+      transform 220ms ease,
+      visibility 0s linear 220ms;
+  }
+
+  .d6-page.booking-bar-visible .booking-bar--contextual {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition-delay: 0s;
   }
 
   .d6-page .booking-bar__button,
@@ -2016,6 +2035,10 @@ body.d6-page
     background: var(--d6-glass);
     color: var(--d6-door-dark);
     font-size: 1.2rem;
+  }
+
+  .d6-page .compact-header__booking {
+    display: none;
   }
 }
 
@@ -2045,21 +2068,6 @@ body.d6-page
 
   .d6-page .language-menu__code {
     display: inline;
-  }
-
-  .d6-page .compact-header__booking {
-    width: 44px;
-    min-width: 44px;
-    padding: 0;
-  }
-
-  .d6-page .compact-header__booking span {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
   }
 
   .d6-page .blend-hero {
