@@ -492,6 +492,104 @@
   font-size: 0.65rem;
 }
 
+/*
+ * Editorial hero reveal.
+ * Motion is intentionally limited to the first viewport and disabled when the
+ * visitor requests reduced motion.
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .d6-page .blend-hero__copy > * {
+    animation: d6-hero-copy-reveal 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .d6-page .blend-hero__copy > :nth-child(1) {
+    animation-delay: 80ms;
+  }
+
+  .d6-page .blend-hero__copy > :nth-child(2) {
+    animation-delay: 170ms;
+  }
+
+  .d6-page .blend-hero__copy > :nth-child(3) {
+    animation-delay: 270ms;
+  }
+
+  .d6-page .blend-hero__copy > :nth-child(4) {
+    animation-delay: 380ms;
+  }
+
+  .d6-page .blend-hero__media > picture {
+    animation: d6-hero-frame-reveal 920ms cubic-bezier(0.22, 1, 0.36, 1) 140ms both;
+  }
+
+  .d6-page .blend-hero__media > picture > img {
+    animation: d6-hero-image-focus 1120ms cubic-bezier(0.22, 1, 0.36, 1) 140ms both;
+  }
+
+  .d6-page .blend-hero__media figure {
+    animation: d6-hero-frame-reveal 860ms cubic-bezier(0.22, 1, 0.36, 1) 360ms both;
+  }
+
+  .d6-page .blend-hero__media figure img {
+    animation: d6-hero-image-focus 1040ms cubic-bezier(0.22, 1, 0.36, 1) 360ms both;
+  }
+
+  .d6-page .blend-hero__media figcaption {
+    animation: d6-hero-caption-reveal 460ms cubic-bezier(0.22, 1, 0.36, 1) 900ms both;
+  }
+}
+
+@keyframes d6-hero-copy-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes d6-hero-frame-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes d6-hero-image-focus {
+  from {
+    filter: blur(12px);
+    opacity: 0.52;
+    transform: scale(1.055);
+  }
+
+  to {
+    filter: blur(0);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes d6-hero-caption-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Shared sections and room comparison */
 
 .d6-page .compact-section {
