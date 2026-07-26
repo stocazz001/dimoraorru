@@ -35,14 +35,14 @@
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#205b63">
   <link rel="preload" as="image" href="/assets/images/design6/entrance-door-900.webp" type="image/webp" imagesrcset="/assets/images/design6/entrance-door-900.webp 900w, /assets/images/design6/entrance-door-1400.webp 1400w" imagesizes="(max-width: 900px) 92vw, 42vw" fetchpriority="high">
-  <link rel="stylesheet" href="/assets/design6.css?v=20260726a">
+  <link rel="stylesheet" href="/assets/design6.css?v=20260726b">
   <link rel="stylesheet" href="/assets/css/site-consent.css?v=20260720">
 
   <script>window.dataLayer = window.dataLayer || [];</script>
   <script defer src="/assets/js/site-consent.js?v=20260720"></script>
   <script defer src="/assets/js/conversion-tracking.js?v=20260720"></script>
   <script defer src="/assets/js/design6-form.js?v=20260723"></script>
-  <script defer src="/assets/js/design6-availability.js?v=20260723a"></script>
+  <script defer src="/assets/js/design6-availability.js?v=20260726c"></script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -288,7 +288,7 @@
             <svg class="d6-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3Z"></path><path d="m9 12 2 2 4-4"></path></svg>
             <div>
               <strong>Vérifiez les disponibilités et le prix de l’hébergement</strong>
-              <p>Le système de réservation officiel confirme les disponibilités, les conditions de réservation et le prix de l’hébergement. Toute taxe de séjour de Cabras applicable est indiquée séparément avant la confirmation. La réservation et le paiement s’y effectuent également.</p>
+              <p>Le système de réservation officiel confirme les disponibilités, les conditions de réservation et le prix de l’hébergement. Le prix affiché n’inclut pas la taxe de séjour fixée par la commune de Cabras. La réservation et le paiement s’y effectuent également.</p>
             </div>
             <a class="orru-button" href="https://book.bnbdimoraorru.it/booking.php?propid=312937&amp;lang=fr&amp;referer=website" data-cta="room_comparison_booking" data-location="room_comparison" aria-label="Vérifier les dates et les disponibilités dans le système de réservation officiel">
               Continuer vers la réservation
@@ -423,7 +423,7 @@
       <section class="orru-shell compact-final" id="booking" aria-labelledby="booking-title">
         <div class="compact-final__intro">
           <h2 id="booking-title">Vérifiez les dates.</h2>
-          <p>Choisissez vos dates : le système de réservation confirme les disponibilités, les conditions et le prix de l’hébergement. Toute taxe de séjour de Cabras applicable est indiquée séparément avant la confirmation.</p>
+          <p>Choisissez vos dates : le système de réservation confirme les disponibilités, les conditions et le prix de l’hébergement. Le prix affiché n’inclut pas la taxe de séjour fixée par la commune de Cabras.</p>
         </div>
         <div class="d6-booking-panel">
           <div
@@ -434,6 +434,8 @@
             data-hint="Sélectionnez l’arrivée, puis le départ dans le même calendrier."
             data-available="Nuit disponible"
             data-unavailable="Nuit indisponible"
+            data-base-price="Prix de base pour 2 personnes"
+            data-tax-excluded="Taxe de séjour non incluse"
             data-loading="Chargement des disponibilités…"
             data-error="Les disponibilités ne peuvent pas être consultées pour le moment."
             data-show-manual="Saisir les dates manuellement"
@@ -446,7 +448,7 @@
             data-dates-required="Sélectionnez d’abord l’arrivée et le départ."
             data-prev-month="Mois précédent"
             data-next-month="Mois suivant"
-            data-guide="Les couleurs sont indicatives pour chaque nuit. Beds24 confirme la disponibilité pour l’ensemble du séjour, les éventuelles restrictions et le prix."
+            data-guide="Les prix de base pour 2 personnes sont indicatifs pour chaque nuit disponible. Beds24 confirme la disponibilité, les restrictions et le prix final du séjour complet. Le prix affiché n’inclut pas la taxe de séjour fixée par la commune de Cabras."
           ></div>
           <form action="https://book.bnbdimoraorru.it/booking.php" method="get" class="d6-booking-grid" data-booking-form data-cta="final_search" data-location="booking_form" aria-describedby="booking-note">
             <input type="hidden" name="propid" value="312937">
@@ -481,7 +483,7 @@
             </button>
           </form>
           <div class="d6-booking-meta" id="booking-note">
-            <p>Le système de réservation confirme les disponibilités, les conditions de réservation et le prix de l’hébergement. Toute taxe de séjour de Cabras applicable est indiquée séparément avant la confirmation.</p>
+            <p>Le système de réservation confirme les disponibilités, les conditions de réservation et le prix de l’hébergement. Le prix affiché n’inclut pas la taxe de séjour fixée par la commune de Cabras.</p>
 
             <a href="https://book.bnbdimoraorru.it/booking.php?propid=312937&amp;lang=fr&amp;referer=website" data-cta="booking_fallback" data-location="booking_form">Ouvrir le système de réservation <svg class="d6-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="m10 14 11-11"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></a>
           </div>
@@ -507,7 +509,6 @@
             <a href="https://wa.me/393492166046" data-cta="footer_whatsapp" data-location="footer"><svg class="d6-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"></path></svg>WhatsApp</a>
           </div>
           <nav class="compact-footer__policies" aria-label="Confidentialité / Politique relative aux cookies">
-            <a href="/fr/bb-cabras/">B&amp;B à Cabras</a>
             <a href="/en/privacy/">Confidentialité</a>
             <a href="/en/cookies/">Politique relative aux cookies</a>
           </nav>

@@ -35,14 +35,14 @@
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#205b63">
   <link rel="preload" as="image" href="/assets/images/design6/entrance-door-900.webp" type="image/webp" imagesrcset="/assets/images/design6/entrance-door-900.webp 900w, /assets/images/design6/entrance-door-1400.webp 1400w" imagesizes="(max-width: 900px) 92vw, 42vw" fetchpriority="high">
-  <link rel="stylesheet" href="/assets/design6.css?v=20260726a">
+  <link rel="stylesheet" href="/assets/design6.css?v=20260726b">
   <link rel="stylesheet" href="/assets/css/site-consent.css?v=20260720">
 
   <script>window.dataLayer = window.dataLayer || [];</script>
   <script defer src="/assets/js/site-consent.js?v=20260720"></script>
   <script defer src="/assets/js/conversion-tracking.js?v=20260720"></script>
   <script defer src="/assets/js/design6-form.js?v=20260723"></script>
-  <script defer src="/assets/js/design6-availability.js?v=20260723a"></script>
+  <script defer src="/assets/js/design6-availability.js?v=20260726c"></script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -288,7 +288,7 @@
             <svg class="d6-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3Z"></path><path d="m9 12 2 2 4-4"></path></svg>
             <div>
               <strong>Consulta disponibilidad y precio del alojamiento</strong>
-              <p>El sistema oficial muestra la disponibilidad actualizada, las condiciones de reserva y el precio del alojamiento. Cualquier impuesto turístico de Cabras aplicable se indica por separado antes de confirmar. Allí completarás la reserva y el pago.</p>
+              <p>El sistema oficial muestra la disponibilidad actualizada, las condiciones de reserva y el precio del alojamiento. El precio mostrado no incluye la tasa turística establecida por el Ayuntamiento de Cabras. Allí completarás la reserva y el pago.</p>
             </div>
             <a class="orru-button" href="https://book.bnbdimoraorru.it/booking.php?propid=312937&amp;lang=es&amp;referer=website" data-cta="room_comparison_booking" data-location="room_comparison" aria-label="Consultar fechas y disponibilidad en el sistema oficial de reservas">
               Continuar con la reserva
@@ -423,7 +423,7 @@
       <section class="orru-shell compact-final" id="booking" aria-labelledby="booking-title">
         <div class="compact-final__intro">
           <h2 id="booking-title">Consulta tus fechas.</h2>
-          <p>El sistema oficial confirma la disponibilidad, las condiciones de reserva y el precio del alojamiento. Cualquier impuesto turístico de Cabras aplicable se indica por separado antes de confirmar.</p>
+          <p>El sistema oficial confirma la disponibilidad, las condiciones de reserva y el precio del alojamiento. El precio mostrado no incluye la tasa turística establecida por el Ayuntamiento de Cabras.</p>
         </div>
         <div class="d6-booking-panel">
           <div
@@ -434,6 +434,8 @@
             data-hint="Elige la llegada y después la salida en el mismo calendario."
             data-available="Noche disponible"
             data-unavailable="Noche no disponible"
+            data-base-price="Precio base para 2 personas"
+            data-tax-excluded="Tasa turística no incluida"
             data-loading="Cargando disponibilidad…"
             data-error="No se puede consultar la disponibilidad en este momento."
             data-show-manual="Introducir las fechas manualmente"
@@ -446,7 +448,7 @@
             data-dates-required="Selecciona primero la llegada y la salida."
             data-prev-month="Mes anterior"
             data-next-month="Mes siguiente"
-            data-guide="Los colores son orientativos para cada noche. Beds24 confirma la disponibilidad de toda la estancia, las posibles restricciones y el precio."
+            data-guide="Los precios base para 2 personas son orientativos para cada noche disponible. Beds24 confirma la disponibilidad, las restricciones y el precio final de toda la estancia. El precio mostrado no incluye la tasa turística establecida por el Ayuntamiento de Cabras."
           ></div>
           <form action="https://book.bnbdimoraorru.it/booking.php" method="get" class="d6-booking-grid" data-booking-form data-cta="final_search" data-location="booking_form" aria-describedby="booking-note">
             <input type="hidden" name="propid" value="312937">
@@ -481,7 +483,7 @@
             </button>
           </form>
           <div class="d6-booking-meta" id="booking-note">
-            <p>El sistema de reservas confirma la disponibilidad, las condiciones de reserva y el precio del alojamiento. Cualquier impuesto turístico de Cabras aplicable se indica por separado antes de confirmar.</p>
+            <p>El sistema de reservas confirma la disponibilidad, las condiciones de reserva y el precio del alojamiento. El precio mostrado no incluye la tasa turística establecida por el Ayuntamiento de Cabras.</p>
 
             <a href="https://book.bnbdimoraorru.it/booking.php?propid=312937&amp;lang=es&amp;referer=website" data-cta="booking_fallback" data-location="booking_form">Abrir el sistema de reservas <svg class="d6-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="m10 14 11-11"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></a>
           </div>
@@ -507,7 +509,6 @@
             <a href="https://wa.me/393492166046" data-cta="footer_whatsapp" data-location="footer"><svg class="d6-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"></path></svg>WhatsApp</a>
           </div>
           <nav class="compact-footer__policies" aria-label="Privacidad / Política de cookies">
-            <a href="/es/bb-cabras/">B&amp;B en Cabras</a>
             <a href="/en/privacy/">Privacidad</a>
             <a href="/en/cookies/">Política de cookies</a>
           </nav>

@@ -61,7 +61,10 @@
     "/assets/vendor/jquery-ui/jquery-ui-1.13.3.min.js";
   var BEDS24_WIDGET_URL =
     "https://media.xmlcal.com/widget/1.01/js/bookWidget.min.js";
+  var BASE_PRICE_DATA_URL =
+    "/assets/data/base-prices-2-guests.json";
   var widgetLoader;
+  var basePriceDataLoader;
 
   function loadScript(src, key) {
     var existing = document.querySelector(
@@ -142,6 +145,37 @@
     }
 
     return widgetLoader;
+  }
+
+  function loadBasePriceData() {
+    if (!window.fetch) return Promise.resolve(null);
+
+    if (!basePriceDataLoader) {
+      basePriceDataLoader = window.fetch(BASE_PRICE_DATA_URL, {
+        cache: "no-store",
+        credentials: "same-origin"
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error("Base price data unavailable");
+          return response.json();
+        })
+        .then(function (data) {
+          if (!data ||
+              data.currency !== "EUR" ||
+              !data.occupancy ||
+              data.occupancy.adults !== 2 ||
+              data.occupancy.children !== 0 ||
+              !data.rooms) {
+            throw new Error("Invalid base price data");
+          }
+          return data;
+        })
+        .catch(function () {
+          return null;
+        });
+    }
+
+    return basePriceDataLoader;
   }
 
   function makeElement(tagName, className, text) {
@@ -354,6 +388,158 @@
     };
   }
 
+  function enhanceDatepickerPrices(room, strings) {
+    var picker = document.getElementById("ui-datepicker-div");
+    var observer;
+    var frame;
+    var priceMap = {};
+    var currency = "EUR";
+    var disposed = false;
+
+    if (!picker) return function () {};
+
+    function formatPrice(value) {
+      try {
+        return new Intl.NumberFormat(strings.pageLanguage, {
+          style: "currency",
+          currency: currency,
+          minimumFractionDigits: Number.isInteger(value) ? 0 : 2,
+          maximumFractionDigits: 2
+        }).format(value);
+      } catch (error) {
+        return "€" + value;
+      }
+    }
+
+    function formatDate(date) {
+      try {
+        return new Intl.DateTimeFormat(strings.pageLanguage, {
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        }).format(date);
+      } catch (error) {
+        return date.toLocaleDateString();
+      }
+    }
+
+    function removeDecoration(link) {
+      var badge = link.querySelector("[data-dimora-base-price]");
+      if (badge) badge.remove();
+      if (link.classList.contains("has-dimora-base-price")) {
+        link.classList.remove("has-dimora-base-price");
+      }
+      if (link.dataset.dimoraPriceDecorated === "true") {
+        link.removeAttribute("aria-label");
+        link.removeAttribute("title");
+        delete link.dataset.dimoraPriceDecorated;
+      }
+    }
+
+    function decorate() {
+      frame = undefined;
+      if (disposed) return;
+
+      Array.prototype.forEach.call(
+        picker.querySelectorAll("td[data-year][data-month]"),
+        function (cell) {
+          var link = cell.querySelector("a.ui-state-default");
+          if (!link) return;
+
+          var year = Number(cell.dataset.year);
+          var month = Number(cell.dataset.month);
+          var day = Number(link.firstChild && link.firstChild.nodeValue);
+          var available =
+            cell.classList.contains("ui-state-available") &&
+            !cell.classList.contains("ui-datepicker-unselectable") &&
+            !cell.classList.contains("ui-state-disabled");
+
+          if (!year || !Number.isFinite(month) || !day || !available) {
+            removeDecoration(link);
+            return;
+          }
+
+          var date = new Date(year, month, day);
+          var key = [
+            String(year).padStart(4, "0"),
+            String(month + 1).padStart(2, "0"),
+            String(day).padStart(2, "0")
+          ].join("-");
+          var value = Number(priceMap[key]);
+
+          if (!Number.isFinite(value) || value <= 0) {
+            removeDecoration(link);
+            return;
+          }
+
+          var formattedPrice = formatPrice(value);
+          var badge = link.querySelector("[data-dimora-base-price]");
+          if (!badge) {
+            badge = makeElement("small", "dimora-base-price");
+            badge.dataset.dimoraBasePrice = "true";
+            badge.setAttribute("aria-hidden", "true");
+            link.appendChild(badge);
+          }
+          if (badge.textContent !== formattedPrice) {
+            badge.textContent = formattedPrice;
+          }
+          if (!link.classList.contains("has-dimora-base-price")) {
+            link.classList.add("has-dimora-base-price");
+          }
+
+          var accessibleLabel = [
+            formatDate(date),
+            strings.basePrice + " " + formattedPrice,
+            strings.taxExcluded
+          ].join(". ");
+          link.setAttribute("aria-label", accessibleLabel);
+          link.setAttribute("title", accessibleLabel);
+          link.dataset.dimoraPriceDecorated = "true";
+        }
+      );
+    }
+
+    function scheduleDecoration() {
+      if (disposed || frame !== undefined) return;
+      frame = window.requestAnimationFrame
+        ? window.requestAnimationFrame(decorate)
+        : window.setTimeout(decorate, 0);
+    }
+
+    observer = new MutationObserver(scheduleDecoration);
+    observer.observe(picker, {
+      attributes: true,
+      attributeFilter: ["class", "data-month", "data-year"],
+      childList: true,
+      subtree: true
+    });
+
+    loadBasePriceData().then(function (data) {
+      if (disposed || !data) return;
+      currency = data.currency;
+      var roomData = data.rooms[room.id];
+      priceMap = roomData && roomData.prices ? roomData.prices : {};
+      scheduleDecoration();
+    });
+    scheduleDecoration();
+
+    return function () {
+      disposed = true;
+      observer.disconnect();
+      if (frame !== undefined) {
+        if (window.cancelAnimationFrame) {
+          window.cancelAnimationFrame(frame);
+        } else {
+          window.clearTimeout(frame);
+        }
+      }
+      Array.prototype.forEach.call(
+        picker.querySelectorAll("[data-dimora-price-decorated]"),
+        removeDecoration
+      );
+    };
+  }
+
   function constrainGuestSelectors(form, capacity) {
     var adults = form.elements.namedItem("numadult");
     var children = form.elements.namedItem("numchild");
@@ -387,11 +573,12 @@
     };
   }
 
-  function getSubmissionUrl(form) {
+  function getSubmissionUrl(form, room) {
     var url = new URL(BOOKING_ACTION);
     new FormData(form).forEach(function (value, key) {
       if (String(value).trim()) url.searchParams.append(key, value);
     });
+    url.searchParams.set("br1-" + room.id, "Book");
     return url.toString();
   }
 
@@ -423,7 +610,7 @@
 
       if (!form.reportValidity()) return;
 
-      var href = getSubmissionUrl(form);
+      var href = getSubmissionUrl(form, room);
       var navigated = false;
 
       function navigate() {
@@ -493,6 +680,16 @@
       ),
       prevMonth: getText(placeholder, "prevMonth", "Previous month"),
       nextMonth: getText(placeholder, "nextMonth", "Next month"),
+      basePrice: getText(
+        placeholder,
+        "basePrice",
+        "Base price for 2 people"
+      ),
+      taxExcluded: getText(
+        placeholder,
+        "taxExcluded",
+        "Tourist tax excluded"
+      ),
       guide: getText(
         placeholder,
         "guide",
@@ -523,6 +720,8 @@
     var availableSwatch = makeElement("i", "is-available");
     var unavailableItem = makeElement("span");
     var unavailableSwatch = makeElement("i", "is-unavailable");
+    var priceItem = makeElement("span");
+    var priceSwatch = makeElement("i", "is-price", "€");
     var widgetSlot = makeElement("div", "beds24-range-trial__host");
     var status = makeElement(
       "p",
@@ -539,9 +738,11 @@
 
     availableItem.append(availableSwatch, strings.available);
     unavailableItem.append(unavailableSwatch, strings.unavailable);
+    priceItem.append(priceSwatch, strings.basePrice);
     availableSwatch.setAttribute("aria-hidden", "true");
     unavailableSwatch.setAttribute("aria-hidden", "true");
-    availabilityLegend.append(availableItem, unavailableItem);
+    priceSwatch.setAttribute("aria-hidden", "true");
+    availabilityLegend.append(availableItem, unavailableItem, priceItem);
 
     picker.append(pickerLegend, tabs);
     topline.append(picker, hint);
@@ -650,6 +851,7 @@
           var removeGuestConstraints = function () {};
           var removeDatepickerConstraints = function () {};
           var removeDatepickerAccessibility = function () {};
+          var removeDatepickerPrices = function () {};
           var removeDateValidation = function () {};
           var handleSubmit;
 
@@ -664,6 +866,7 @@
             removeGuestConstraints();
             removeDatepickerConstraints();
             removeDatepickerAccessibility();
+            removeDatepickerPrices();
             removeDateValidation();
 
             $(host).find(".datepicker, .hasDatepicker").each(function (_, input) {
@@ -802,6 +1005,7 @@
               host,
               strings
             );
+            removeDatepickerPrices = enhanceDatepickerPrices(room, strings);
             clearWidgetDefaultDates(host, form);
 
             var dateInputs = Array.prototype.slice.call(

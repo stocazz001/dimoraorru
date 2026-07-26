@@ -35,14 +35,14 @@
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#205b63">
   <link rel="preload" as="image" href="/assets/images/design6/entrance-door-900.webp" type="image/webp" imagesrcset="/assets/images/design6/entrance-door-900.webp 900w, /assets/images/design6/entrance-door-1400.webp 1400w" imagesizes="(max-width: 900px) 92vw, 42vw" fetchpriority="high">
-  <link rel="stylesheet" href="/assets/design6.css?v=20260726a">
+  <link rel="stylesheet" href="/assets/design6.css?v=20260726b">
   <link rel="stylesheet" href="/assets/css/site-consent.css?v=20260720">
 
   <script>window.dataLayer = window.dataLayer || [];</script>
   <script defer src="/assets/js/site-consent.js?v=20260720"></script>
   <script defer src="/assets/js/conversion-tracking.js?v=20260720"></script>
   <script defer src="/assets/js/design6-form.js?v=20260723"></script>
-  <script defer src="/assets/js/design6-availability.js?v=20260723a"></script>
+  <script defer src="/assets/js/design6-availability.js?v=20260726c"></script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -288,7 +288,7 @@
             <svg class="d6-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3Z"></path><path d="m9 12 2 2 4-4"></path></svg>
             <div>
               <strong>Controlla disponibilità e prezzo del soggiorno</strong>
-              <p>Nel sistema ufficiale trovi disponibilità aggiornata, condizioni di prenotazione e prezzo del soggiorno. L’eventuale imposta di soggiorno del Comune di Cabras è indicata separatamente prima della conferma. Prenotazione e pagamento si completano lì.</p>
+              <p>Nel sistema ufficiale trovi disponibilità aggiornata, condizioni di prenotazione e prezzo del soggiorno. Il prezzo indicato non include l’imposta di soggiorno stabilita dal Comune di Cabras. Prenotazione e pagamento si completano lì.</p>
             </div>
             <a class="orru-button" href="https://book.bnbdimoraorru.it/booking.php?propid=312937&amp;lang=it&amp;referer=website" data-cta="room_comparison_booking" data-location="room_comparison" aria-label="Controlla date e disponibilità nel sistema ufficiale di prenotazione">
               Continua alla prenotazione
@@ -423,7 +423,7 @@
       <section class="orru-shell compact-final" id="booking" aria-labelledby="booking-title">
         <div class="compact-final__intro">
           <h2 id="booking-title">Controlla le date.</h2>
-          <p>Il sistema ufficiale conferma disponibilità, condizioni di prenotazione e prezzo del soggiorno, indicando separatamente l’eventuale imposta di soggiorno prima della conferma.</p>
+          <p>Il sistema ufficiale conferma disponibilità, condizioni di prenotazione e prezzo del soggiorno. Il prezzo indicato non include l’imposta di soggiorno stabilita dal Comune di Cabras.</p>
         </div>
         <div class="d6-booking-panel">
           <div
@@ -434,6 +434,8 @@
             data-hint="Scegli l’arrivo, poi la partenza nello stesso calendario."
             data-available="Notte libera"
             data-unavailable="Notte non disponibile"
+            data-base-price="Prezzo base per 2 persone"
+            data-tax-excluded="Imposta di soggiorno esclusa"
             data-loading="Caricamento disponibilità…"
             data-error="La disponibilità non è al momento consultabile."
             data-show-manual="Inserisci le date manualmente"
@@ -446,7 +448,7 @@
             data-dates-required="Scegli prima arrivo e partenza."
             data-prev-month="Mese precedente"
             data-next-month="Mese successivo"
-            data-guide="I colori forniscono un’indicazione per ciascuna notte. Beds24 conferma la disponibilità per l’intero soggiorno, eventuali restrizioni e il prezzo."
+            data-guide="I prezzi base per 2 persone sono indicativi per le singole notti libere. Beds24 conferma disponibilità, restrizioni e prezzo finale dell’intero soggiorno. Il prezzo indicato non include l’imposta di soggiorno stabilita dal Comune di Cabras."
           ></div>
           <form action="https://book.bnbdimoraorru.it/booking.php" method="get" class="d6-booking-grid" data-booking-form data-cta="final_search" data-location="booking_form" aria-describedby="booking-note">
             <input type="hidden" name="propid" value="312937">
@@ -481,7 +483,7 @@
             </button>
           </form>
           <div class="d6-booking-meta" id="booking-note">
-            <p>Il sistema di prenotazione conferma disponibilità, condizioni di prenotazione e prezzo del soggiorno. L’eventuale imposta di soggiorno del Comune di Cabras è indicata separatamente prima della conferma.</p>
+            <p>Il sistema di prenotazione conferma disponibilità, condizioni di prenotazione e prezzo del soggiorno. Il prezzo indicato non include l’imposta di soggiorno stabilita dal Comune di Cabras.</p>
 
             <a href="https://book.bnbdimoraorru.it/booking.php?propid=312937&amp;lang=it&amp;referer=website" data-cta="booking_fallback" data-location="booking_form">Apri il sistema di prenotazione <svg class="d6-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="m10 14 11-11"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></a>
           </div>
@@ -507,7 +509,6 @@
             <a href="https://wa.me/393492166046" data-cta="footer_whatsapp" data-location="footer"><svg class="d6-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"></path></svg>WhatsApp</a>
           </div>
           <nav class="compact-footer__policies" aria-label="Privacy / Cookie policy">
-            <a href="/bb-cabras/">B&amp;B a Cabras</a>
             <a href="/privacy/">Privacy</a>
             <a href="/cookies/">Cookie policy</a>
           </nav>

@@ -1,0 +1,48 @@
+name: Refresh calendar base prices
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: refresh-calendar-base-prices
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Refresh two-person nightly prices
+        run: node scripts/refresh-base-prices.mjs
+
+      - name: Publish changed snapshot
+        id: publish
+        run: |
+          if git diff --quiet -- assets/data/base-prices-2-guests.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/data/base-prices-2-guests.json
+          git commit -m "Refresh calendar base prices"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Rebuild GitHub Pages
+        if: steps.publish.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
