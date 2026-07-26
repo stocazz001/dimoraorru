@@ -404,10 +404,10 @@
 }
 
 .d6-page .blend-hero__copy h1 {
-  max-width: 650px;
+  max-width: 720px;
   margin: 20px 0 24px;
-  font: 500 clamp(4rem, 7.4vw, 7rem) / 0.88 var(--d6-display);
-  letter-spacing: -0.055em;
+  font: 500 clamp(3.35rem, 5.8vw, 5.9rem) / 0.92 var(--d6-display);
+  letter-spacing: -0.05em;
 }
 
 .d6-page .blend-hero__lead {
@@ -596,7 +596,7 @@
   padding-block: clamp(62px, 7vw, 92px);
 }
 
-.d6-page :where(.blend-choice, .blend-inside, .blend-reviews) {
+.d6-page :where(.blend-choice, .blend-inside, .blend-location, .blend-reviews) {
   border-top: 1px solid var(--d6-line);
   scroll-margin-top: 90px;
 }
@@ -611,6 +611,7 @@
 .d6-page :where(
   .blend-choice__intro h2,
   .blend-heading h2,
+  .blend-location__copy h2,
   .blend-reviews__heading h2
 ) {
   margin: 12px 0 20px;
@@ -803,6 +804,130 @@
   color: var(--d6-muted);
   font-size: 0.74rem;
   line-height: 1.45;
+}
+
+/* Cabras and Sinis location */
+
+.d6-page .blend-location {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.82fr) minmax(440px, 1.18fr);
+  gap: clamp(38px, 7vw, 94px);
+  align-items: center;
+}
+
+.d6-page .blend-location__copy > p:not(.orru-eyebrow) {
+  max-width: 620px;
+  margin: 0;
+  color: var(--d6-muted);
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+.d6-page .blend-location__copy > p + p {
+  margin-top: 14px;
+}
+
+.d6-page .blend-location__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.d6-page .blend-location__actions .orru-button--ghost {
+  background: rgb(255 253 248 / 78%);
+}
+
+.d6-page .blend-location__panel {
+  position: relative;
+  display: grid;
+  gap: 24px;
+  overflow: hidden;
+  padding: clamp(28px, 4vw, 48px);
+  border: 1px solid rgb(32 91 99 / 18%);
+  border-radius: 26px;
+  background:
+    linear-gradient(145deg, rgb(220 233 232 / 94%), rgb(255 253 248 / 92%));
+  box-shadow: 0 22px 62px rgb(36 54 56 / 9%);
+}
+
+.d6-page .blend-location__panel::after {
+  position: absolute;
+  right: -56px;
+  bottom: -70px;
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgb(32 91 99 / 12%);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 34px rgb(32 91 99 / 4%),
+    0 0 0 70px rgb(32 91 99 / 3%);
+  content: "";
+  pointer-events: none;
+}
+
+.d6-page .blend-location__address {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  font-style: normal;
+}
+
+.d6-page .blend-location__address span {
+  color: var(--d6-door-dark);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.d6-page .blend-location__address strong {
+  max-width: 500px;
+  font: 500 clamp(1.7rem, 3vw, 2.55rem) / 1.08 var(--d6-display);
+  letter-spacing: -0.025em;
+}
+
+.d6-page .blend-location__places {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d6-page .blend-location__places li {
+  padding: 8px 11px;
+  border: 1px solid rgb(32 91 99 / 15%);
+  border-radius: 999px;
+  background: rgb(255 253 248 / 68%);
+  color: var(--d6-door-deep);
+  font-size: 0.71rem;
+  font-weight: 600;
+}
+
+.d6-page .blend-location__parking {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0;
+  color: var(--d6-muted);
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+
+.d6-page .blend-location__parking svg {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color: var(--d6-door-dark);
 }
 
 /* Host, practical details and reviews */
@@ -1771,6 +1896,14 @@ body.d6-page
   .d6-page .blend-choice__intro {
     max-width: 720px;
   }
+
+  .d6-page .blend-location {
+    grid-template-columns: 1fr;
+  }
+
+  .d6-page .blend-location__copy {
+    max-width: 760px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -1934,7 +2067,7 @@ body.d6-page
   }
 
   .d6-page .blend-hero__copy h1 {
-    font-size: clamp(3.5rem, 17vw, 5rem);
+    font-size: clamp(3rem, 14vw, 4.5rem);
   }
 
   .d6-page .blend-hero__actions {
@@ -1977,6 +2110,20 @@ body.d6-page
 
   .d6-page .blend-room-card__description {
     min-height: 0;
+  }
+
+  .d6-page .blend-location__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .d6-page .blend-location__actions .orru-button {
+    width: 100%;
+  }
+
+  .d6-page .blend-location__panel {
+    padding: 26px 22px;
+    border-radius: 22px;
   }
 
   .d6-page .blend-reviews__heading {
