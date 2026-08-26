@@ -313,6 +313,12 @@ html[data-booking-state="generic"] .state-panel[data-state="generic"] {
   content: "";
 }
 
+.identity-photo picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .identity-photo img {
   width: 100%;
   height: 100%;

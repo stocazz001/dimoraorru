@@ -686,6 +686,19 @@
   object-fit: cover;
 }
 
+.d6-page .blend-room-card > picture {
+  display: block;
+  width: 100%;
+  height: 245px;
+  overflow: hidden;
+}
+
+.d6-page .blend-room-card > picture > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .d6-page .blend-room-card__body {
   padding: 22px;
 }
@@ -943,6 +956,12 @@
   grid-template-columns: 120px 1fr;
   gap: 26px;
   align-items: center;
+}
+
+.d6-page .blend-reviews__heading picture {
+  display: block;
+  width: 120px;
+  height: 145px;
 }
 
 .d6-page .blend-reviews__heading img {
@@ -1911,11 +1930,13 @@ body.d6-page
     transform: translateY(-4px);
   }
 
-  .d6-page .blend-room-card > img {
+  .d6-page .blend-room-card > img,
+  .d6-page .blend-room-card > picture > img {
     transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
   }
 
-  .d6-page .blend-room-card:hover > img {
+  .d6-page .blend-room-card:hover > img,
+  .d6-page .blend-room-card:hover > picture > img {
     transform: scale(1.015);
   }
 }
@@ -2171,7 +2192,8 @@ body.d6-page
     grid-template-columns: 1fr;
   }
 
-  .d6-page .blend-room-card > img {
+  .d6-page .blend-room-card > img,
+  .d6-page .blend-room-card > picture {
     height: 230px;
   }
 
@@ -2199,6 +2221,11 @@ body.d6-page
   }
 
   .d6-page .blend-reviews__heading img {
+    width: 82px;
+    height: 105px;
+  }
+
+  .d6-page .blend-reviews__heading picture {
     width: 82px;
     height: 105px;
   }

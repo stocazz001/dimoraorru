@@ -11,7 +11,7 @@
   <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
   <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
   <meta name="theme-color" content="#206a70">
-  <link rel="stylesheet" href="/assets/booking-confirmation.css?v=20260723">
+  <link rel="stylesheet" href="/assets/booking-confirmation.css?v=20260826a">
   <link rel="stylesheet" href="/assets/css/site-consent.css?v=20260720">
   <script src="/assets/booking-confirmation.js?v=20260723"></script>
   <script>window.dataLayer = window.dataLayer || [];</script>
@@ -54,7 +54,10 @@
     </section>
     <section class="confirmation-card" aria-labelledby="next-title">
       <figure class="identity-photo">
-        <img src="/assets/images/design6/entrance-door.jpg" width="2100" height="1400" alt="Den turkisfarvede indgang til Dimora Orrù i Cabras">
+        <picture>
+          <source type="image/webp" srcset="/assets/images/design6/entrance-door-900.webp 900w, /assets/images/design6/entrance-door-1400.webp 1400w" sizes="(max-width: 620px) calc(100vw - 28px), (max-width: 800px) calc(100vw - 40px), (max-width: 960px) 760px, 634px">
+          <img src="/assets/images/design6/entrance-door.jpg" width="2100" height="1400" alt="Den turkisfarvede indgang til Dimora Orrù i Cabras" decoding="async">
+        </picture>
         <figcaption>Dimora Orrù · Cabras</figcaption>
       </figure>
       <div class="confirmation-card__body">
