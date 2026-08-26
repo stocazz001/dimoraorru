@@ -24,6 +24,13 @@
       "cta_text",
       "link_url",
       "page_language"
+    ],
+    preferred_source_click: [
+      "cta_id",
+      "cta_location",
+      "cta_text",
+      "link_url",
+      "page_language"
     ]
   };
   var lang = (document.documentElement.lang || "en").toLowerCase().slice(0, 2);

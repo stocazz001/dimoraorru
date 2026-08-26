@@ -111,12 +111,24 @@
     if (!anchor || !anchor.href) return "";
     try {
       var url = new URL(anchor.href, window.location.href);
+      var isGoogleHost =
+        url.hostname === "google.com" ||
+        url.hostname.slice(-".google.com".length) === ".google.com";
       if (url.hostname === "book.bnbdimoraorru.it" && url.pathname.indexOf("/booking.php") === 0) {
         return "booking";
       }
       if (url.protocol === "tel:") return "phone";
       if (url.hostname === "wa.me" || url.hostname.indexOf("whatsapp.com") !== -1) return "whatsapp";
-      if (url.hostname.indexOf("google.") !== -1 && (url.pathname.indexOf("/maps") !== -1 || url.search.indexOf("destination=") !== -1 || url.search.indexOf("q=") !== -1)) {
+      if (isGoogleHost && url.pathname.indexOf("/preferences/source") === 0) {
+        return "preferred_source";
+      }
+      if (
+        isGoogleHost &&
+        (url.pathname.indexOf("/maps") !== -1 ||
+          url.searchParams.has("destination") ||
+          url.searchParams.has("destination_place_id") ||
+          url.searchParams.has("query_place_id"))
+      ) {
         return "maps";
       }
     } catch (error) {
@@ -126,9 +138,13 @@
   }
 
   function pushEvent(anchor, kind, callback) {
+    var eventName = "conversion_intent_click";
+    if (kind === "booking") eventName = "landing_booking_click";
+    if (kind === "preferred_source") eventName = "preferred_source_click";
+
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-      event: kind === "booking" ? "landing_booking_click" : "conversion_intent_click",
+      event: eventName,
       intent_type: kind,
       cta_id: anchor.dataset.cta || "",
       cta_location: anchor.dataset.location || "",
