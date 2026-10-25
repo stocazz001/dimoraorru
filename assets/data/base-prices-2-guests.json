@@ -6,8 +6,8 @@
     "children": 0
   },
   "coverage": {
-    "start": "2026-10-24",
-    "end": "2027-10-25"
+    "start": "2026-10-25",
+    "end": "2027-10-26"
   },
   "source": "Beds24 standard offer 1",
   "rooms": {
@@ -183,5 +183,5 @@
       }
     }
   },
-  "generatedAt": "2026-10-24T08:51:22.263Z"
+  "generatedAt": "2026-10-25T09:08:01.817Z"
 }
